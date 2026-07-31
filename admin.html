@@ -134,8 +134,18 @@
           <input type="text" id="f-tagline" placeholder="a PMOS symptom management tool" />
         </div>
         <div class="field">
+          <label for="f-tagline-gap">Tagline gap override (px, optional)</label>
+          <input type="text" id="f-tagline-gap" placeholder="e.g. -20 to pull it up toward the title" />
+          <p class="hint">Leave blank for normal spacing. Negative values pull the tagline up toward the title.</p>
+        </div>
+        <div class="field">
           <label for="f-blurb">Blurb (1-3 sentences, shown in the listing)</label>
           <textarea id="f-blurb" style="min-height:4rem;"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-blurb-gap">Blurb gap override (px, optional)</label>
+          <input type="text" id="f-blurb-gap" placeholder="e.g. -10 to pull it up toward the line above" />
+          <p class="hint">Leave blank for normal spacing.</p>
         </div>
         <div class="field">
           <label for="f-description">Full description (shown on the detail page)</label>
@@ -244,6 +254,13 @@
     return str.split(",").map((c) => c.trim()).filter(Boolean);
   }
 
+  function parseOptionalNumber(str) {
+    const trimmed = str.trim();
+    if (trimmed === "") return undefined;
+    const n = Number(trimmed);
+    return Number.isNaN(n) ? undefined : n;
+  }
+
   function updatePalettePreview() {
     const colors = parsePalette($("#f-palette").value);
     $("#palette-preview").innerHTML = colors.map((c) => `<span style="background:${c}"></span>`).join("");
@@ -294,7 +311,9 @@
     updatePalettePreview();
     $("#f-tags").value = (p.tags || []).join(", ");
     $("#f-tagline").value = p.tagline || "";
+    $("#f-tagline-gap").value = typeof p.taglineGap === "number" ? p.taglineGap : "";
     $("#f-blurb").value = p.blurb || "";
+    $("#f-blurb-gap").value = typeof p.blurbGap === "number" ? p.blurbGap : "";
     $("#f-description").value = p.description || "";
     $("#f-repo").value = (p.links && p.links.repo) || "";
     $("#f-demo").value = (p.links && p.links.demo) || "";
@@ -387,16 +406,21 @@
       return;
     }
 
+    const taglineGap = parseOptionalNumber($("#f-tagline-gap").value);
+    const blurbGap = parseOptionalNumber($("#f-blurb-gap").value);
+
     const project = {
       slug,
       title,
       year: $("#f-year").value.trim(),
       titleStyle: $("#f-title-style").value,
       tagline: $("#f-tagline").value.trim(),
+      ...(taglineGap !== undefined ? { taglineGap } : {}),
       thumbnail: $("#f-thumbnail").value.trim(),
       palette: parsePalette($("#f-palette").value),
       tags: $("#f-tags").value.split(",").map((t) => t.trim()).filter(Boolean),
       blurb: $("#f-blurb").value.trim(),
+      ...(blurbGap !== undefined ? { blurbGap } : {}),
       description: $("#f-description").value.trim(),
       links: {
         repo: $("#f-repo").value.trim(),

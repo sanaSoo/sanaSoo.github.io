@@ -27,6 +27,10 @@ function titleFontClass(titleStyle) {
   return "project-title--serif";
 }
 
+function gapStyle(gap) {
+  return typeof gap === "number" && !Number.isNaN(gap) ? ` style="margin-top:${gap}px"` : "";
+}
+
 function renderSwatches(palette) {
   return (palette || [])
     .map((hex) => `<span class="swatch" style="background:${escapeHtml(hex)}"></span>`)
@@ -48,8 +52,8 @@ function renderList() {
             <h3 class="project-title ${titleFontClass(p.titleStyle)}">${escapeHtml(p.title)}</h3>
             ${p.year ? `<span class="project-year">${escapeHtml(p.year)}</span>` : ""}
           </div>
-          ${p.tagline ? `<p class="project-tagline">${escapeHtml(p.tagline)}</p>` : ""}
-          <p class="project-blurb">${escapeHtml(p.blurb)}</p>
+          ${p.tagline ? `<p class="project-tagline"${gapStyle(p.taglineGap)}>${escapeHtml(p.tagline)}</p>` : ""}
+          <p class="project-blurb"${gapStyle(p.blurbGap)}>${escapeHtml(p.blurb)}</p>
           <div class="swatch-row">${renderSwatches(p.palette)}</div>
           <div class="project-callout" style="background:${calloutColor}">
             <a class="callout-primary" href="#project/${encodeURIComponent(p.slug)}">link to full story</a>
@@ -100,7 +104,7 @@ function renderProjectDetail(project) {
   const links = project.links || {};
   detailContent.innerHTML = `
     <h2 class="${titleFontClass(project.titleStyle)}">${escapeHtml(project.title)}</h2>
-    ${project.tagline ? `<p class="project-tagline">${escapeHtml(project.tagline)}</p>` : ""}
+    ${project.tagline ? `<p class="project-tagline"${gapStyle(project.taglineGap)}>${escapeHtml(project.tagline)}</p>` : ""}
     <div class="swatch-row">${renderSwatches(project.palette)}</div>
     ${
       project.tags && project.tags.length

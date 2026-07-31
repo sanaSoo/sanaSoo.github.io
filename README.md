@@ -50,6 +50,7 @@ You can also reopen `admin.html` later to edit or delete an existing project —
 - `slug` — short unique id, used in the URL (e.g. `my-cool-app`)
 - `title`, `year`, `titleStyle` (`"serif"`, `"script"`, or `"typewriter"` — controls the display font)
 - `tagline` — one line shown right under the title (e.g. "a PMOS symptom management tool")
+- `taglineGap` / `blurbGap` — optional numbers (px). Overrides the space above the tagline/blurb; negative values pull it up toward the line above (for that tight, editorial "gapped" look). Omit for normal spacing.
 - `blurb` (1-3 sentences, shown in the listing), `description` (longer, shown on the detail page)
 - `thumbnail` — path to the listing image
 - `palette` — array of hex colors shown as a swatch strip (e.g. `["#e37083", "#f49aa2", "#ffcb7c"]`)

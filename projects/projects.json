@@ -54,5 +54,33 @@
         "media": ""
       }
     ]
+  },
+{
+    "slug": "sample-project-one",
+    "title": "Steady",
+    "year": "2026",
+    "titleStyle": "script",
+    "tagline": "a PMOS                                 symptom management tool",
+    "taglineGap": -20,
+    "thumbnail": "assets/images/projects/sample-project-one/cover.svg",
+    "palette": ["#e37083", "#f49aa2", "#ffcb7c", "#ffb876", "#a8bf8a", "#89b7c2"],
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "blurb": "Basic blurb explaining the project. Ideally this portion would be around 1-3 sentences describing a bit of the need for the project along with the current progress. The link to full story pulls up the more detailed information like dev log and storytelling + gallery.",
+    "description": "A longer description of the project shown on the detail page. Explain the problem, your approach, and what you learned.",
+    "links": {
+      "repo": "#",
+      "demo": "#"
+    },
+    "gallery": [
+      { "type": "image", "src": "assets/images/projects/sample-project-one/cover.svg" }
+    ],
+    "devLog": [
+      {
+        "date": "2026-07-01",
+        "title": "Project kickoff",
+        "text": "Describe what you did in this update. You can add as many dev log entries as you like.",
+        "media": ""
+      }
+    ]
   }
 ]

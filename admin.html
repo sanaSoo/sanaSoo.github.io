@@ -46,6 +46,9 @@
   .error-msg { color: #a1291c; font-family: var(--font-ui); font-size: 0.85rem; }
   .success-msg { color: var(--dark-green); font-family: var(--font-ui); font-size: 0.85rem; font-weight: 700; }
 
+  .palette-preview { display: flex; gap: 0.35rem; margin-top: 0.5rem; min-height: 24px; }
+  .palette-preview span { width: 24px; height: 24px; display: inline-block; border: 1px solid var(--dark-green); }
+
   .output-box { margin-top: 2.5rem; }
   .output-box textarea { min-height: 220px; font-family: ui-monospace, monospace; font-size: 0.78rem; }
   .output-actions { display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
@@ -114,7 +117,12 @@
           <input type="text" id="f-thumbnail" placeholder="assets/images/projects/your-slug/cover.jpg" />
         </div>
         <div class="field">
-          <label for="f-tags">Tags (comma separated)</label>
+          <label for="f-palette">Color palette (comma-separated hex codes, shown as swatches)</label>
+          <input type="text" id="f-palette" placeholder="#e37083, #f49aa2, #ffcb7c, #ffb876, #a8bf8a, #89b7c2" />
+          <div class="palette-preview" id="palette-preview"></div>
+        </div>
+        <div class="field">
+          <label for="f-tags">Tags (comma separated, optional — shown on the detail page only)</label>
           <input type="text" id="f-tags" placeholder="React, Node, Figma" />
         </div>
       </fieldset>
@@ -122,8 +130,22 @@
       <fieldset>
         <legend>Copy</legend>
         <div class="field">
-          <label for="f-blurb">Short blurb (1 line, shown in the listing)</label>
-          <textarea id="f-blurb" style="min-height:3rem;"></textarea>
+          <label for="f-tagline">Tagline (1 line, shown right under the title)</label>
+          <input type="text" id="f-tagline" placeholder="a PMOS symptom management tool" />
+        </div>
+        <div class="field">
+          <label for="f-tagline-gap">Tagline gap override (px, optional)</label>
+          <input type="text" id="f-tagline-gap" placeholder="e.g. -20 to pull it up toward the title" />
+          <p class="hint">Leave blank for normal spacing. Negative values pull the tagline up toward the title.</p>
+        </div>
+        <div class="field">
+          <label for="f-blurb">Blurb (1-3 sentences, shown in the listing)</label>
+          <textarea id="f-blurb" style="min-height:4rem;"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-blurb-gap">Blurb gap override (px, optional)</label>
+          <input type="text" id="f-blurb-gap" placeholder="e.g. -10 to pull it up toward the line above" />
+          <p class="hint">Leave blank for normal spacing.</p>
         </div>
         <div class="field">
           <label for="f-description">Full description (shown on the detail page)</label>
@@ -133,8 +155,14 @@
 
       <fieldset>
         <legend>Links</legend>
-        <div class="row-group" id="links-rows"></div>
-        <button type="button" class="add-row" data-add="links">+ Add link</button>
+        <div class="field">
+          <label for="f-repo">Repo URL</label>
+          <input type="text" id="f-repo" placeholder="https://github.com/..." />
+        </div>
+        <div class="field">
+          <label for="f-demo">Demo URL</label>
+          <input type="text" id="f-demo" placeholder="https://..." />
+        </div>
       </fieldset>
 
       <fieldset>
@@ -222,15 +250,28 @@
     });
   }
 
+  function parsePalette(str) {
+    return str.split(",").map((c) => c.trim()).filter(Boolean);
+  }
+
+  function parseOptionalNumber(str) {
+    const trimmed = str.trim();
+    if (trimmed === "") return undefined;
+    const n = Number(trimmed);
+    return Number.isNaN(n) ? undefined : n;
+  }
+
+  function updatePalettePreview() {
+    const colors = parsePalette($("#f-palette").value);
+    $("#palette-preview").innerHTML = colors.map((c) => `<span style="background:${c}"></span>`).join("");
+  }
+
+  $("#f-palette").addEventListener("input", updatePalettePreview);
+
   document.querySelectorAll("[data-add]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const kind = btn.dataset.add;
-      if (kind === "links") {
-        makeRepeatRow($("#links-rows"), [
-          { name: "label", placeholder: "Label (e.g. Repo)" },
-          { name: "url", placeholder: "https://..." }
-        ]);
-      } else if (kind === "gallery") {
+      if (kind === "gallery") {
         makeRepeatRow($("#gallery-rows"), [
           { name: "type", type: "select", options: ["image", "video", "youtube"] },
           { name: "src", placeholder: "path/to/file or YouTube ID" }
@@ -249,10 +290,11 @@
   function clearForm() {
     editingSlug = null;
     $("#project-form").reset();
-    $("#links-rows").innerHTML = "";
     $("#gallery-rows").innerHTML = "";
     $("#devlog-rows").innerHTML = "";
     $("#f-title-style").value = "serif";
+    $("#f-palette").value = "";
+    updatePalettePreview();
     $("#form-message").textContent = "";
   }
 
@@ -265,17 +307,16 @@
     $("#f-year").value = p.year || "";
     $("#f-title-style").value = p.titleStyle || "serif";
     $("#f-thumbnail").value = p.thumbnail || "";
+    $("#f-palette").value = (p.palette || []).join(", ");
+    updatePalettePreview();
     $("#f-tags").value = (p.tags || []).join(", ");
+    $("#f-tagline").value = p.tagline || "";
+    $("#f-tagline-gap").value = typeof p.taglineGap === "number" ? p.taglineGap : "";
     $("#f-blurb").value = p.blurb || "";
+    $("#f-blurb-gap").value = typeof p.blurbGap === "number" ? p.blurbGap : "";
     $("#f-description").value = p.description || "";
-
-    $("#links-rows").innerHTML = "";
-    (p.links || []).forEach((l) =>
-      makeRepeatRow($("#links-rows"), [
-        { name: "label", placeholder: "Label" },
-        { name: "url", placeholder: "https://..." }
-      ], l)
-    );
+    $("#f-repo").value = (p.links && p.links.repo) || "";
+    $("#f-demo").value = (p.links && p.links.demo) || "";
 
     $("#gallery-rows").innerHTML = "";
     (p.gallery || []).forEach((g) =>
@@ -365,16 +406,26 @@
       return;
     }
 
+    const taglineGap = parseOptionalNumber($("#f-tagline-gap").value);
+    const blurbGap = parseOptionalNumber($("#f-blurb-gap").value);
+
     const project = {
       slug,
       title,
       year: $("#f-year").value.trim(),
       titleStyle: $("#f-title-style").value,
+      tagline: $("#f-tagline").value.trim(),
+      ...(taglineGap !== undefined ? { taglineGap } : {}),
       thumbnail: $("#f-thumbnail").value.trim(),
+      palette: parsePalette($("#f-palette").value),
       tags: $("#f-tags").value.split(",").map((t) => t.trim()).filter(Boolean),
       blurb: $("#f-blurb").value.trim(),
+      ...(blurbGap !== undefined ? { blurbGap } : {}),
       description: $("#f-description").value.trim(),
-      links: readRepeatRows($("#links-rows"), ["label", "url"]).filter((l) => l.label || l.url),
+      links: {
+        repo: $("#f-repo").value.trim(),
+        demo: $("#f-demo").value.trim()
+      },
       gallery: readRepeatRows($("#gallery-rows"), ["type", "src"])
         .filter((g) => g.src)
         .map((g) => (g.type === "youtube" ? { type: "youtube", id: g.src } : { type: g.type, src: g.src })),

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sana Sood — Portfolio</title>
+<title>Sanjna Sood — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Courier+Prime:wght@400;700&family=Pacifico&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -14,12 +14,14 @@
 <header class="site-header">
   <nav class="nav">
     <a href="#top" class="nav-brand">
-      Sana Sood
+      Sanjna Sood
       <span class="nav-tagline">Portfolio &mdash; Vol. 01</span>
     </a>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
+      <a href="#photography">Photography</a>
+      <a href="#journal">Journal</a>
     </div>
   </nav>
 </header>
@@ -27,34 +29,31 @@
 <main id="top">
 
   <section id="about" class="about">
-    <div class="about-photo-wrap">
-      <svg class="about-star about-star-moss" viewBox="0 0 200 200" aria-hidden="true">
-        <path d="M100 0 L122 68 L195 68 L136 110 L158 178 L100 136 L42 178 L64 110 L5 68 L78 68 Z" />
+    <div class="about-canvas" id="about-canvas">
+      <svg class="about-star about-star-moss" data-layout-id="star-moss" data-resize="wh" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M49.1 166.3 L70.0 110.7 L5.0 82.2 L79.8 80.3 L97.3 11.7 L111.7 85.6 L187.5 52.9 L131.2 114.6 L195.0 188.3 L98.8 120.9 Z" />
       </svg>
-      <svg class="about-star about-star-rosy" viewBox="0 0 200 200" aria-hidden="true">
-        <path d="M100 0 L122 68 L195 68 L136 110 L158 178 L100 136 L42 178 L64 110 L5 68 L78 68 Z" />
+      <svg class="about-star about-star-rosy" data-layout-id="star-rosy" data-resize="wh" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M145.3 28.2 L130.8 82.4 L195.0 102.6 L124.3 111.8 L114.2 177.8 L93.6 110.1 L24.8 148.2 L72.4 84.9 L5.0 22.2 L102.5 75.7 Z" />
       </svg>
-      <div class="about-photo">
-        <img src="assets/images/about/profile.jpg" alt="Profile photo" onerror="this.style.display='none'" />
+      <div class="about-photo" data-layout-id="photo" data-resize="wh">
+        <img src="assets/images/about/pfp.jpg" alt="Profile photo" onerror="this.style.display='none'" />
       </div>
-    </div>
-    <div class="about-text">
-      <h1>Hi, I&rsquo;m Sana!</h1>
-      <div class="about-meta">
-        <span>she/her</span>
-        <span class="about-meta-strong">Your University &lsquo;27</span>
-        <span>Your City, ST</span>
+      <h1 data-layout-id="headline" data-resize="w">Hi my name is Sanjna!</h1>
+      <div class="about-meta" data-layout-id="meta" data-resize="w">
+        <span class="about-meta-regular">she/her</span>
+        <span class="about-meta-strong">Santa Clara University &lsquo;27</span>
       </div>
-      <p class="about-focus">Computer Science &amp; Engineering</p>
-      <p>
-        Write a short bio here — who you are, what you build, and what you're
-        interested in. Edit this paragraph directly in <code>index.html</code>.
+      <p class="about-location" data-layout-id="location" data-resize="w">Redwood City, CA</p>
+      <p class="about-focus" data-layout-id="focus" data-resize="w">Computer Science & Engineering</p>
+      <p class="about-interests" data-layout-id="interests" data-resize="w">
+        Technical Innovation, Design Thinking, and the Entrepreneurial Mindset
       </p>
-      <div class="about-links">
-        <a class="about-link" href="mailto:sanjna1sood@gmail.com">email</a>
+      <div class="about-links" data-layout-id="links" data-resize="w">
         <a class="about-link" href="https://github.com/sanaSoo" target="_blank" rel="noopener">github</a>
         <a class="about-link" href="#" target="_blank" rel="noopener">linkedin</a>
         <a class="about-link" href="#" target="_blank" rel="noopener">resume</a>
+        <a class="about-link" href="#" target="_blank" rel="noopener">email</a>
       </div>
     </div>
   </section>
@@ -65,6 +64,29 @@
     <div id="projects-list" class="projects-list"></div>
   </section>
 
+  <section id="photography" class="photography">
+    <h2 class="projects-title">Vol&nbsp;2. Photography</h2>
+    <p class="projects-hint">hobby photography shots with my digital camera :P</p>
+    <div class="coming-soon">
+      <svg class="coming-soon-star" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M100 0 L122 80 L195 68 L136 110 L158 178 L100 136 L42 178 L64 110 L5 68 L78 68 Z" />
+      </svg>
+      <p class="coming-soon-text">coming soon</p>
+      <p class="coming-soon-sub">film rolls still developing&hellip;</p>
+    </div>
+  </section>
+
+  <section id="journal" class="journal">
+    <h2 class="projects-title">Vol&nbsp;3. Journal</h2>
+    <p class="projects-hint">snapshots from my junk journal</p>
+    <div class="coming-soon">
+      <svg class="coming-soon-star" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M100 0 L122 80 L195 68 L136 130 L158 178 L100 136 L42 178 L64 110 L5 68 L78 90 Z" />
+      </svg>
+      <p class="coming-soon-text">coming soon</p>
+      <p class="coming-soon-sub">pages still being glued in&hellip;</p>
+    </div>
+  </section>
 </main>
 
 <div id="project-detail" class="project-detail" aria-hidden="true">
@@ -79,5 +101,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/layout.js"></script>
 </body>
 </html>

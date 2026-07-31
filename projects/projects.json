@@ -33,6 +33,7 @@
     "year": "2026",
     "titleStyle": "typewriter",
     "tagline": "documented your favorite media with friends",
+    "taglineGap": -20,
     "thumbnail": "assets/images/projects/sample-project-two/cover.svg",
     "palette": ["#7fb0e8", "#ffbfbf", "#008371", "#d0cbeb", "#d6d35e", "#c46040"],
     "tags": ["Figma", "Research"],

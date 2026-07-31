@@ -35,10 +35,12 @@ You can also reopen `admin.html` later to edit or delete an existing project —
 
 - `slug` — short unique id, used in the URL (e.g. `my-cool-app`)
 - `title`, `year`, `titleStyle` (`"serif"`, `"script"`, or `"typewriter"` — controls the display font)
-- `blurb` (short, shown in the listing), `description` (longer, shown on the detail page)
-- `tags` — array of strings (rendered as color swatches)
+- `tagline` — one line shown right under the title (e.g. "a PMOS symptom management tool")
+- `blurb` (1-3 sentences, shown in the listing), `description` (longer, shown on the detail page)
 - `thumbnail` — path to the listing image
-- `links` — e.g. repo / demo, shown in the listing and on the detail page
+- `palette` — array of hex colors shown as a swatch strip (e.g. `["#e37083", "#f49aa2", "#ffcb7c"]`)
+- `tags` — optional array of strings, shown as small labels on the detail page only
+- `links` — `{ "repo": "https://...", "demo": "https://..." }`
 - `gallery` — array of photos/videos:
   - `{ "type": "image", "src": "..." }`
   - `{ "type": "video", "src": "..." }` for a local video file

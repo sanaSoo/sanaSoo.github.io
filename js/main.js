@@ -11,8 +11,7 @@ const list = document.getElementById("projects-list");
 const detailEl = document.getElementById("project-detail");
 const detailContent = document.getElementById("project-detail-content");
 
-const CALLOUT_COLORS = ["var(--rosy-brown)", "var(--moss-green)", "var(--midnight-green)"];
-const SWATCH_COLORS = ["var(--dark-green)", "var(--moss-green)", "var(--rosy-brown)", "var(--midnight-green)"];
+const CALLOUT_COLORS = ["var(--rosy-brown)", "var(--moss-green)"];
 
 let PROJECTS = [];
 
@@ -28,15 +27,16 @@ function titleFontClass(titleStyle) {
   return "project-title--serif";
 }
 
+function renderSwatches(palette) {
+  return (palette || [])
+    .map((hex) => `<span class="swatch" style="background:${escapeHtml(hex)}"></span>`)
+    .join("");
+}
+
 function renderList() {
   list.innerHTML = PROJECTS.map((p, i) => {
     const calloutColor = CALLOUT_COLORS[i % CALLOUT_COLORS.length];
-    const swatches = (p.tags || [])
-      .map((t, ti) => `<span class="swatch" style="background:${SWATCH_COLORS[ti % SWATCH_COLORS.length]}" title="${escapeHtml(t)}"></span>`)
-      .join("");
-    const extraLinks = (p.links || [])
-      .map((l) => `<a href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label)}</a>`)
-      .join("");
+    const links = p.links || {};
 
     return `
       <article class="project-row">
@@ -48,11 +48,15 @@ function renderList() {
             <h3 class="project-title ${titleFontClass(p.titleStyle)}">${escapeHtml(p.title)}</h3>
             ${p.year ? `<span class="project-year">${escapeHtml(p.year)}</span>` : ""}
           </div>
+          ${p.tagline ? `<p class="project-tagline">${escapeHtml(p.tagline)}</p>` : ""}
           <p class="project-blurb">${escapeHtml(p.blurb)}</p>
-          ${swatches ? `<div class="swatch-row">${swatches}</div>` : ""}
+          <div class="swatch-row">${renderSwatches(p.palette)}</div>
           <div class="project-callout" style="background:${calloutColor}">
             <a class="callout-primary" href="#project/${encodeURIComponent(p.slug)}">link to full story</a>
-            <div class="callout-links">${extraLinks}</div>
+            <div class="callout-links">
+              ${links.repo ? `<a href="${escapeHtml(links.repo)}" target="_blank" rel="noopener">underlined link to repo</a>` : ""}
+              ${links.demo ? `<a href="${escapeHtml(links.demo)}" target="_blank" rel="noopener">underlined link to demo</a>` : ""}
+            </div>
           </div>
         </div>
       </article>
@@ -93,19 +97,20 @@ function renderDevLogEntry(entry) {
 }
 
 function renderProjectDetail(project) {
+  const links = project.links || {};
   detailContent.innerHTML = `
     <h2 class="${titleFontClass(project.titleStyle)}">${escapeHtml(project.title)}</h2>
-    <div class="swatch-row">
-      ${(project.tags || []).map((t, ti) => `<span class="swatch" style="background:${SWATCH_COLORS[ti % SWATCH_COLORS.length]}" title="${escapeHtml(t)}"></span>`).join("")}
-    </div>
+    ${project.tagline ? `<p class="project-tagline">${escapeHtml(project.tagline)}</p>` : ""}
+    <div class="swatch-row">${renderSwatches(project.palette)}</div>
+    ${
+      project.tags && project.tags.length
+        ? `<div class="tag-list">${project.tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>`
+        : ""
+    }
     <p class="project-description">${escapeHtml(project.description)}</p>
     <div class="detail-links">
-      ${(project.links || [])
-        .map(
-          (l) =>
-            `<a class="btn btn-primary" href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label)}</a>`
-        )
-        .join("")}
+      ${links.repo ? `<a class="btn btn-primary" href="${escapeHtml(links.repo)}" target="_blank" rel="noopener">Repo</a>` : ""}
+      ${links.demo ? `<a class="btn btn-primary" href="${escapeHtml(links.demo)}" target="_blank" rel="noopener">Demo</a>` : ""}
     </div>
 
     ${

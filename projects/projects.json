@@ -4,7 +4,7 @@
     "title": "Steady",
     "year": "2026",
     "titleStyle": "script",
-    "tagline": "a PMOS            symptom management tool",
+    "tagline": "a PMOS        symptom management tool",
     "taglineGap": -20,
     "thumbnail": "assets/images/projects/sample-project-one/cover.svg",
     "palette": ["#e37083", "#f49aa2", "#ffcb7c", "#ffb876", "#a8bf8a", "#89b7c2"],

@@ -437,6 +437,7 @@ h1[data-layout-id="headline"] {
 .project-tagline {
   font-size: 1.15rem;
   margin: 0 0 1.25rem;
+  white-space: pre-wrap;
 }
 
 .project-blurb {

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sana Sood — Portfolio</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="#top" class="nav-brand">Sana Sood</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section id="about" class="about">
+    <div class="about-photo">
+      <img src="assets/images/about/profile.jpg" alt="Profile photo" onerror="this.style.display='none'" />
+    </div>
+    <div class="about-text">
+      <h1>Hi, I'm Sana.</h1>
+      <p>
+        Write a short bio here — who you are, what you build, and what you're
+        interested in. Edit this paragraph directly in <code>index.html</code>.
+      </p>
+      <div class="about-links">
+        <a class="btn btn-primary" href="mailto:sanjna1sood@gmail.com">Email Me</a>
+        <a class="btn" href="https://github.com/sanaSoo" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="#" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <p class="projects-hint">Click a project to see development logs, photos, and videos.</p>
+    <div id="projects-grid" class="projects-grid"></div>
+  </section>
+
+</main>
+
+<div id="project-detail" class="project-detail" aria-hidden="true">
+  <div class="project-detail-inner">
+    <a href="#projects" class="detail-close" aria-label="Close">&times; Close</a>
+    <div id="project-detail-content"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Sana Sood</p>
+</footer>
+
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

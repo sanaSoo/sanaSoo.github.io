@@ -1,15 +1,20 @@
 // ---------------------------------------------------------------------------
-// Renders the project grid from PROJECTS (see projects-data.js) and handles
-// showing/hiding the project detail view based on the URL hash
-// (e.g. #project/sample-project). No other file needs to change when you
-// add new projects.
+// Fetches projects/projects.json and renders:
+//   1. An alternating "story" list of projects on the homepage
+//   2. A full detail view when a project's hash is opened (#project/<slug>)
+// Add/edit projects with admin.html, or edit projects/projects.json directly.
 // ---------------------------------------------------------------------------
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
-const grid = document.getElementById("projects-grid");
+const list = document.getElementById("projects-list");
 const detailEl = document.getElementById("project-detail");
 const detailContent = document.getElementById("project-detail-content");
+
+const CALLOUT_COLORS = ["var(--rosy-brown)", "var(--moss-green)", "var(--midnight-green)"];
+const SWATCH_COLORS = ["var(--dark-green)", "var(--moss-green)", "var(--rosy-brown)", "var(--midnight-green)"];
+
+let PROJECTS = [];
 
 function escapeHtml(str) {
   const div = document.createElement("div");
@@ -17,23 +22,42 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-function renderGrid() {
-  grid.innerHTML = PROJECTS.map(
-    (p) => `
-    <a class="project-card" href="#project/${encodeURIComponent(p.slug)}">
-      <div class="project-card-thumb">
-        <img src="${escapeHtml(p.thumbnail)}" alt="${escapeHtml(p.title)}" loading="lazy" onerror="this.style.display='none'" />
-      </div>
-      <div class="project-card-body">
-        <h3>${escapeHtml(p.title)}</h3>
-        <p>${escapeHtml(p.blurb)}</p>
-        <div class="tag-list">
-          ${(p.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
+function titleFontClass(titleStyle) {
+  if (titleStyle === "script") return "project-title--script";
+  if (titleStyle === "typewriter") return "project-title--typewriter";
+  return "project-title--serif";
+}
+
+function renderList() {
+  list.innerHTML = PROJECTS.map((p, i) => {
+    const calloutColor = CALLOUT_COLORS[i % CALLOUT_COLORS.length];
+    const swatches = (p.tags || [])
+      .map((t, ti) => `<span class="swatch" style="background:${SWATCH_COLORS[ti % SWATCH_COLORS.length]}" title="${escapeHtml(t)}"></span>`)
+      .join("");
+    const extraLinks = (p.links || [])
+      .map((l) => `<a href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label)}</a>`)
+      .join("");
+
+    return `
+      <article class="project-row">
+        <div class="project-row-media">
+          <img src="${escapeHtml(p.thumbnail)}" alt="${escapeHtml(p.title)}" loading="lazy" onerror="this.style.display='none'" />
         </div>
-      </div>
-    </a>
-  `
-  ).join("");
+        <div class="project-row-content">
+          <div class="project-row-heading">
+            <h3 class="project-title ${titleFontClass(p.titleStyle)}">${escapeHtml(p.title)}</h3>
+            ${p.year ? `<span class="project-year">${escapeHtml(p.year)}</span>` : ""}
+          </div>
+          <p class="project-blurb">${escapeHtml(p.blurb)}</p>
+          ${swatches ? `<div class="swatch-row">${swatches}</div>` : ""}
+          <div class="project-callout" style="background:${calloutColor}">
+            <a class="callout-primary" href="#project/${encodeURIComponent(p.slug)}">link to full story</a>
+            <div class="callout-links">${extraLinks}</div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
 }
 
 function renderGalleryItem(item) {
@@ -70,9 +94,9 @@ function renderDevLogEntry(entry) {
 
 function renderProjectDetail(project) {
   detailContent.innerHTML = `
-    <h2>${escapeHtml(project.title)}</h2>
-    <div class="tag-list">
-      ${(project.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
+    <h2 class="${titleFontClass(project.titleStyle)}">${escapeHtml(project.title)}</h2>
+    <div class="swatch-row">
+      ${(project.tags || []).map((t, ti) => `<span class="swatch" style="background:${SWATCH_COLORS[ti % SWATCH_COLORS.length]}" title="${escapeHtml(t)}"></span>`).join("")}
     </div>
     <p class="project-description">${escapeHtml(project.description)}</p>
     <div class="detail-links">
@@ -99,7 +123,7 @@ function renderProjectDetail(project) {
 }
 
 function showDetailFromHash() {
-  const hash = window.location.hash; // e.g. "#project/sample-project"
+  const hash = window.location.hash; // e.g. "#project/sample-project-one"
   const match = hash.match(/^#project\/(.+)$/);
 
   if (match) {
@@ -118,8 +142,17 @@ function showDetailFromHash() {
   detailEl.setAttribute("aria-hidden", "true");
 }
 
-window.addEventListener("hashchange", showDetailFromHash);
-window.addEventListener("DOMContentLoaded", () => {
-  renderGrid();
+async function init() {
+  try {
+    const res = await fetch("projects/projects.json");
+    PROJECTS = await res.json();
+  } catch (err) {
+    console.error("Could not load projects/projects.json", err);
+    PROJECTS = [];
+  }
+  renderList();
   showDetailFromHash();
-});
+}
+
+window.addEventListener("hashchange", showDetailFromHash);
+window.addEventListener("DOMContentLoaded", init);

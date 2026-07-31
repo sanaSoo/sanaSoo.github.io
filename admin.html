@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manage Projects</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Courier+Prime:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  body { padding-bottom: 6rem; }
+  .admin-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .admin-wrap h1 { font-size: 2rem; font-style: italic; margin-bottom: 0.5rem; }
+  .admin-intro { color: var(--text-muted); max-width: 65ch; margin-bottom: 2rem; }
+  .admin-intro ol { padding-left: 1.2rem; }
+  .admin-columns { display: grid; grid-template-columns: 260px 1fr; gap: 2.5rem; align-items: start; }
+  @media (max-width: 760px) { .admin-columns { grid-template-columns: 1fr; } }
+
+  .project-list-box { border: 2px solid var(--dark-green); padding: 1rem; }
+  .project-list-box h2 { font-family: var(--font-ui); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+  .project-list-item { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(10,51,35,0.15); font-family: var(--font-ui); font-size: 0.85rem; }
+  .project-list-item button { background: none; border: none; cursor: pointer; font-family: var(--font-ui); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--midnight-green); }
+  .project-list-item button.danger { color: var(--rosy-brown); }
+  .project-list-item .load-btn { flex: 1; text-align: left; color: var(--dark-green); font-weight: 600; }
+
+  form { display: flex; flex-direction: column; gap: 1.5rem; }
+  fieldset { border: 2px solid var(--dark-green); padding: 1.25rem; }
+  legend { font-family: var(--font-ui); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0 0.5rem; }
+  label { display: block; font-family: var(--font-ui); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; color: var(--text-muted); }
+  .field { margin-bottom: 1rem; }
+  .field:last-child { margin-bottom: 0; }
+  input[type="text"], input[type="url"], textarea, select {
+    width: 100%; font-family: var(--font-display); font-size: 1rem; padding: 0.5rem 0.6rem;
+    border: 2px solid var(--dark-green); background: var(--beige); color: var(--text); border-radius: 0;
+  }
+  textarea { min-height: 5rem; resize: vertical; }
+  .hint { font-family: var(--font-ui); font-size: 0.7rem; color: var(--text-muted); margin-top: 0.3rem; text-transform: none; letter-spacing: 0; }
+  .row-group { display: flex; flex-direction: column; gap: 0.6rem; }
+  .repeat-row { display: flex; gap: 0.5rem; align-items: center; }
+  .repeat-row input, .repeat-row select { flex: 1; }
+  .remove-row { flex: 0 0 auto; background: none; border: 2px solid var(--rosy-brown); color: var(--rosy-brown); font-family: var(--font-ui); font-size: 0.7rem; padding: 0.4rem 0.6rem; cursor: pointer; }
+  .add-row { align-self: flex-start; background: none; border: 2px solid var(--dark-green); color: var(--dark-green); font-family: var(--font-ui); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.45rem 0.9rem; cursor: pointer; }
+  .add-row:hover, .remove-row:hover { background: var(--dark-green); color: var(--beige); border-color: var(--dark-green); }
+
+  .form-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .form-actions button { cursor: pointer; }
+  .error-msg { color: #a1291c; font-family: var(--font-ui); font-size: 0.85rem; }
+  .success-msg { color: var(--dark-green); font-family: var(--font-ui); font-size: 0.85rem; font-weight: 700; }
+
+  .output-box { margin-top: 2.5rem; }
+  .output-box textarea { min-height: 220px; font-family: ui-monospace, monospace; font-size: 0.78rem; }
+  .output-actions { display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      Sana Sood
+      <span class="nav-tagline">Manage Projects</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">&larr; Back to site</a>
+    </div>
+  </nav>
+</header>
+
+<div class="admin-wrap">
+  <h1>Manage Projects</h1>
+  <div class="admin-intro">
+    <p>A form instead of hand-editing JSON. This runs entirely in your browser — nothing is saved automatically.</p>
+    <ol>
+      <li>Fill out the form below (or click a project on the left to edit it) and click <strong>Save to list</strong>.</li>
+      <li>When you're done adding/editing, click <strong>Download projects.json</strong> at the bottom.</li>
+      <li>Move the downloaded file into the <code>projects/</code> folder, replacing the old <code>projects.json</code>.</li>
+      <li>Drop any new images/videos into <code>assets/images/projects/&lt;slug&gt;/</code> (or <code>assets/videos/...</code>) referencing those paths in the form.</li>
+      <li>Commit and push as usual.</li>
+    </ol>
+  </div>
+
+  <div class="admin-columns">
+    <div class="project-list-box">
+      <h2>Current Projects</h2>
+      <div id="project-list"></div>
+      <button type="button" class="add-row" id="new-project-btn" style="margin-top:1rem;">+ New Project</button>
+    </div>
+
+    <form id="project-form">
+      <fieldset>
+        <legend>Basics</legend>
+        <div class="field">
+          <label for="f-title">Title</label>
+          <input type="text" id="f-title" required />
+        </div>
+        <div class="field">
+          <label for="f-slug">Slug (unique, used in the URL)</label>
+          <input type="text" id="f-slug" required />
+          <p class="hint">Auto-filled from the title. Letters, numbers, and dashes only.</p>
+        </div>
+        <div class="field">
+          <label for="f-year">Year</label>
+          <input type="text" id="f-year" />
+        </div>
+        <div class="field">
+          <label for="f-title-style">Title style</label>
+          <select id="f-title-style">
+            <option value="serif">Serif italic</option>
+            <option value="script">Script</option>
+            <option value="typewriter">Typewriter</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-thumbnail">Thumbnail image path</label>
+          <input type="text" id="f-thumbnail" placeholder="assets/images/projects/your-slug/cover.jpg" />
+        </div>
+        <div class="field">
+          <label for="f-tags">Tags (comma separated)</label>
+          <input type="text" id="f-tags" placeholder="React, Node, Figma" />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Copy</legend>
+        <div class="field">
+          <label for="f-blurb">Short blurb (1 line, shown in the listing)</label>
+          <textarea id="f-blurb" style="min-height:3rem;"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-description">Full description (shown on the detail page)</label>
+          <textarea id="f-description"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Links</legend>
+        <div class="row-group" id="links-rows"></div>
+        <button type="button" class="add-row" data-add="links">+ Add link</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Gallery</legend>
+        <div class="row-group" id="gallery-rows"></div>
+        <button type="button" class="add-row" data-add="gallery">+ Add gallery item</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Development Log</legend>
+        <div class="row-group" id="devlog-rows"></div>
+        <button type="button" class="add-row" data-add="devlog">+ Add log entry</button>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save to list</button>
+        <span id="form-message"></span>
+      </div>
+    </form>
+  </div>
+
+  <div class="output-box">
+    <label for="output-json">projects.json</label>
+    <textarea id="output-json" readonly></textarea>
+    <div class="output-actions">
+      <button type="button" class="btn btn-primary" id="download-btn">Download projects.json</button>
+      <button type="button" class="btn" id="copy-btn">Copy to clipboard</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let PROJECTS = [];
+  let editingSlug = null; // slug currently loaded into the form, if editing
+
+  const $ = (sel) => document.querySelector(sel);
+
+  function slugify(str) {
+    return str
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function makeRepeatRow(container, fields, values = {}) {
+    const row = document.createElement("div");
+    row.className = "repeat-row";
+    fields.forEach((f) => {
+      let el;
+      if (f.type === "select") {
+        el = document.createElement("select");
+        f.options.forEach((opt) => {
+          const o = document.createElement("option");
+          o.value = opt;
+          o.textContent = opt;
+          el.appendChild(o);
+        });
+      } else {
+        el = document.createElement("input");
+        el.type = "text";
+        el.placeholder = f.placeholder || "";
+      }
+      el.dataset.field = f.name;
+      el.value = values[f.name] || (f.type === "select" ? f.options[0] : "");
+      row.appendChild(el);
+    });
+    const removeBtn = document.createElement("button");
+    removeBtn.type = "button";
+    removeBtn.className = "remove-row";
+    removeBtn.textContent = "Remove";
+    removeBtn.onclick = () => row.remove();
+    row.appendChild(removeBtn);
+    container.appendChild(row);
+  }
+
+  function readRepeatRows(container, fieldNames) {
+    return Array.from(container.children).map((row) => {
+      const obj = {};
+      fieldNames.forEach((name) => {
+        const el = row.querySelector(`[data-field="${name}"]`);
+        obj[name] = el ? el.value : "";
+      });
+      return obj;
+    });
+  }
+
+  document.querySelectorAll("[data-add]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const kind = btn.dataset.add;
+      if (kind === "links") {
+        makeRepeatRow($("#links-rows"), [
+          { name: "label", placeholder: "Label (e.g. Repo)" },
+          { name: "url", placeholder: "https://..." }
+        ]);
+      } else if (kind === "gallery") {
+        makeRepeatRow($("#gallery-rows"), [
+          { name: "type", type: "select", options: ["image", "video", "youtube"] },
+          { name: "src", placeholder: "path/to/file or YouTube ID" }
+        ]);
+      } else if (kind === "devlog") {
+        makeRepeatRow($("#devlog-rows"), [
+          { name: "date", placeholder: "YYYY-MM-DD" },
+          { name: "title", placeholder: "Entry title" },
+          { name: "text", placeholder: "What happened" },
+          { name: "media", placeholder: "Optional media path" }
+        ]);
+      }
+    });
+  });
+
+  function clearForm() {
+    editingSlug = null;
+    $("#project-form").reset();
+    $("#links-rows").innerHTML = "";
+    $("#gallery-rows").innerHTML = "";
+    $("#devlog-rows").innerHTML = "";
+    $("#f-title-style").value = "serif";
+    $("#form-message").textContent = "";
+  }
+
+  function loadProjectIntoForm(slug) {
+    const p = PROJECTS.find((proj) => proj.slug === slug);
+    if (!p) return;
+    editingSlug = slug;
+    $("#f-title").value = p.title || "";
+    $("#f-slug").value = p.slug || "";
+    $("#f-year").value = p.year || "";
+    $("#f-title-style").value = p.titleStyle || "serif";
+    $("#f-thumbnail").value = p.thumbnail || "";
+    $("#f-tags").value = (p.tags || []).join(", ");
+    $("#f-blurb").value = p.blurb || "";
+    $("#f-description").value = p.description || "";
+
+    $("#links-rows").innerHTML = "";
+    (p.links || []).forEach((l) =>
+      makeRepeatRow($("#links-rows"), [
+        { name: "label", placeholder: "Label" },
+        { name: "url", placeholder: "https://..." }
+      ], l)
+    );
+
+    $("#gallery-rows").innerHTML = "";
+    (p.gallery || []).forEach((g) =>
+      makeRepeatRow($("#gallery-rows"), [
+        { name: "type", type: "select", options: ["image", "video", "youtube"] },
+        { name: "src", placeholder: "path or YouTube ID" }
+      ], { type: g.type, src: g.src || g.id || "" })
+    );
+
+    $("#devlog-rows").innerHTML = "";
+    (p.devLog || []).forEach((d) =>
+      makeRepeatRow($("#devlog-rows"), [
+        { name: "date", placeholder: "YYYY-MM-DD" },
+        { name: "title", placeholder: "Entry title" },
+        { name: "text", placeholder: "What happened" },
+        { name: "media", placeholder: "Optional media path" }
+      ], d)
+    );
+
+    $("#form-message").textContent = "";
+    window.scrollTo({ top: $("#project-form").getBoundingClientRect().top + window.scrollY - 20, behavior: "smooth" });
+  }
+
+  function renderProjectList() {
+    const box = $("#project-list");
+    if (!PROJECTS.length) {
+      box.innerHTML = '<p class="hint">No projects yet.</p>';
+      return;
+    }
+    box.innerHTML = "";
+    PROJECTS.forEach((p) => {
+      const item = document.createElement("div");
+      item.className = "project-list-item";
+      const loadBtn = document.createElement("button");
+      loadBtn.type = "button";
+      loadBtn.className = "load-btn";
+      loadBtn.textContent = p.title || p.slug;
+      loadBtn.onclick = () => loadProjectIntoForm(p.slug);
+      const delBtn = document.createElement("button");
+      delBtn.type = "button";
+      delBtn.className = "danger";
+      delBtn.textContent = "Delete";
+      delBtn.onclick = () => {
+        if (confirm(`Remove "${p.title}" from the list?`)) {
+          PROJECTS = PROJECTS.filter((proj) => proj.slug !== p.slug);
+          if (editingSlug === p.slug) clearForm();
+          renderProjectList();
+          updateOutput();
+        }
+      };
+      item.appendChild(loadBtn);
+      item.appendChild(delBtn);
+      box.appendChild(item);
+    });
+  }
+
+  function updateOutput() {
+    $("#output-json").value = JSON.stringify(PROJECTS, null, 2);
+  }
+
+  $("#f-title").addEventListener("input", () => {
+    if (!editingSlug) {
+      $("#f-slug").value = slugify($("#f-title").value);
+    }
+  });
+
+  $("#new-project-btn").addEventListener("click", clearForm);
+
+  $("#project-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const msg = $("#form-message");
+    msg.className = "";
+
+    const title = $("#f-title").value.trim();
+    const slug = slugify($("#f-slug").value);
+
+    if (!title || !slug) {
+      msg.className = "error-msg";
+      msg.textContent = "Title and slug are required.";
+      return;
+    }
+
+    const duplicate = PROJECTS.some((p) => p.slug === slug && p.slug !== editingSlug);
+    if (duplicate) {
+      msg.className = "error-msg";
+      msg.textContent = `Slug "${slug}" is already used by another project. Choose a unique one.`;
+      return;
+    }
+
+    const project = {
+      slug,
+      title,
+      year: $("#f-year").value.trim(),
+      titleStyle: $("#f-title-style").value,
+      thumbnail: $("#f-thumbnail").value.trim(),
+      tags: $("#f-tags").value.split(",").map((t) => t.trim()).filter(Boolean),
+      blurb: $("#f-blurb").value.trim(),
+      description: $("#f-description").value.trim(),
+      links: readRepeatRows($("#links-rows"), ["label", "url"]).filter((l) => l.label || l.url),
+      gallery: readRepeatRows($("#gallery-rows"), ["type", "src"])
+        .filter((g) => g.src)
+        .map((g) => (g.type === "youtube" ? { type: "youtube", id: g.src } : { type: g.type, src: g.src })),
+      devLog: readRepeatRows($("#devlog-rows"), ["date", "title", "text", "media"]).filter((d) => d.title || d.text)
+    };
+
+    const existingIndex = PROJECTS.findIndex((p) => p.slug === editingSlug);
+    if (editingSlug && existingIndex !== -1) {
+      PROJECTS[existingIndex] = project;
+    } else {
+      PROJECTS.push(project);
+    }
+
+    editingSlug = slug;
+    msg.className = "success-msg";
+    msg.textContent = `Saved "${title}" to the list below. Keep editing, or download when you're done.`;
+    renderProjectList();
+    updateOutput();
+  });
+
+  $("#download-btn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(PROJECTS, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "projects.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  $("#copy-btn").addEventListener("click", async () => {
+    await navigator.clipboard.writeText($("#output-json").value);
+    const btn = $("#copy-btn");
+    const original = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(() => (btn.textContent = original), 1500);
+  });
+
+  async function init() {
+    try {
+      const res = await fetch("projects/projects.json");
+      PROJECTS = await res.json();
+    } catch (err) {
+      console.error("Could not load projects/projects.json", err);
+      PROJECTS = [];
+    }
+    renderProjectList();
+    updateOutput();
+    clearForm();
+  }
+
+  init();
+</script>
+</body>
+</html>

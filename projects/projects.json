@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "sample-project-one",
+    "title": "Sample Project",
+    "year": "2026",
+    "titleStyle": "script",
+    "thumbnail": "assets/images/projects/sample-project-one/cover.svg",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "blurb": "A short one-line summary of the project shown in the listing.",
+    "description": "A longer description of the project shown on the detail page. Explain the problem, your approach, and what you learned.",
+    "links": [
+      { "label": "Repo", "url": "#" },
+      { "label": "Demo", "url": "#" }
+    ],
+    "gallery": [
+      { "type": "image", "src": "assets/images/projects/sample-project-one/cover.svg" }
+    ],
+    "devLog": [
+      {
+        "date": "2026-07-01",
+        "title": "Project kickoff",
+        "text": "Describe what you did in this update. You can add as many dev log entries as you like.",
+        "media": ""
+      }
+    ]
+  },
+  {
+    "slug": "sample-project-two",
+    "title": "Second Project",
+    "year": "2026",
+    "titleStyle": "typewriter",
+    "thumbnail": "assets/images/projects/sample-project-two/cover.svg",
+    "tags": ["Figma", "Research"],
+    "blurb": "Another short one-line summary of the project shown in the listing.",
+    "description": "A longer description of the second project. Explain the problem, your approach, and what you learned.",
+    "links": [
+      { "label": "Repo", "url": "#" },
+      { "label": "Demo", "url": "#" }
+    ],
+    "gallery": [
+      { "type": "image", "src": "assets/images/projects/sample-project-two/cover.svg" }
+    ],
+    "devLog": [
+      {
+        "date": "2026-07-01",
+        "title": "Project kickoff",
+        "text": "Describe what you did in this update. You can add as many dev log entries as you like.",
+        "media": ""
+      }
+    ]
+  }
+]

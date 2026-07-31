@@ -6,7 +6,7 @@
 <title>Sana Sood — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Courier+Prime:wght@400;700&family=Pacifico&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -27,30 +27,42 @@
 <main id="top">
 
   <section id="about" class="about">
-    <div class="about-photo">
-      <img src="assets/images/about/profile.jpg" alt="Profile photo" onerror="this.style.display='none'" />
+    <div class="about-photo-wrap">
+      <svg class="about-star about-star-moss" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M100 0 L122 68 L195 68 L136 110 L158 178 L100 136 L42 178 L64 110 L5 68 L78 68 Z" />
+      </svg>
+      <svg class="about-star about-star-rosy" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M100 0 L122 68 L195 68 L136 110 L158 178 L100 136 L42 178 L64 110 L5 68 L78 68 Z" />
+      </svg>
+      <div class="about-photo">
+        <img src="assets/images/about/profile.jpg" alt="Profile photo" onerror="this.style.display='none'" />
+      </div>
     </div>
     <div class="about-text">
-      <span class="kicker">About</span>
-      <h1>Hi, I'm Sana.</h1>
+      <h1>Hi, I&rsquo;m Sana!</h1>
+      <div class="about-meta">
+        <span>she/her</span>
+        <span class="about-meta-strong">Your University &lsquo;27</span>
+        <span>Your City, ST</span>
+      </div>
+      <p class="about-focus">Computer Science &amp; Engineering</p>
       <p>
         Write a short bio here — who you are, what you build, and what you're
         interested in. Edit this paragraph directly in <code>index.html</code>.
       </p>
       <div class="about-links">
-        <a class="btn btn-primary" href="mailto:sanjna1sood@gmail.com">Email Me</a>
-        <a class="btn" href="https://github.com/sanaSoo" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="#" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="#" target="_blank" rel="noopener">Resume</a>
+        <a class="about-link" href="mailto:sanjna1sood@gmail.com">email</a>
+        <a class="about-link" href="https://github.com/sanaSoo" target="_blank" rel="noopener">github</a>
+        <a class="about-link" href="#" target="_blank" rel="noopener">linkedin</a>
+        <a class="about-link" href="#" target="_blank" rel="noopener">resume</a>
       </div>
     </div>
   </section>
 
   <section id="projects" class="projects">
-    <span class="kicker">Selected Work</span>
-    <h2>Projects</h2>
-    <p class="projects-hint">Click a project to see development logs, photos, and videos.</p>
-    <div id="projects-grid" class="projects-grid"></div>
+    <h2 class="projects-title">Vol&nbsp;1. Projects</h2>
+    <p class="projects-hint">ranging from full-stack applications to inter-disciplinary works</p>
+    <div id="projects-list" class="projects-list"></div>
   </section>
 
 </main>
@@ -66,7 +78,6 @@
   <p>&copy; <span id="year"></span> Sana Sood</p>
 </footer>
 
-<script src="js/projects-data.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

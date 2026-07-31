@@ -27,29 +27,27 @@
 <main id="top">
 
   <section id="about" class="about">
-    <div class="about-photo-wrap">
-      <svg class="about-star about-star-moss" viewBox="0 0 200 200" aria-hidden="true">
+    <div class="about-canvas" id="about-canvas">
+      <svg class="about-star about-star-moss" data-layout-id="star-moss" data-resize="wh" viewBox="0 0 200 200" aria-hidden="true">
         <path d="M100 0 L122 68 L195 68 L136 110 L158 178 L100 136 L42 178 L64 110 L5 68 L78 68 Z" />
       </svg>
-      <svg class="about-star about-star-rosy" viewBox="0 0 200 200" aria-hidden="true">
+      <svg class="about-star about-star-rosy" data-layout-id="star-rosy" data-resize="wh" viewBox="0 0 200 200" aria-hidden="true">
         <path d="M100 0 L122 68 L195 68 L136 110 L158 178 L100 136 L42 178 L64 110 L5 68 L78 68 Z" />
       </svg>
-      <div class="about-photo">
+      <div class="about-photo" data-layout-id="photo" data-resize="wh">
         <img src="assets/images/about/profile.jpg" alt="Profile photo" onerror="this.style.display='none'" />
       </div>
-    </div>
-    <div class="about-text">
-      <h1>Hi my name is Sana!</h1>
-      <div class="about-meta">
+      <h1 data-layout-id="headline" data-resize="w">Hi my name is Sana!</h1>
+      <div class="about-meta" data-layout-id="meta" data-resize="w">
         <span class="about-meta-regular">she/her</span>
         <span class="about-meta-strong">Your University &lsquo;27</span>
       </div>
-      <p class="about-location">Your City, ST</p>
-      <p class="about-focus">Computer Science and Engineering</p>
-      <p class="about-interests">
+      <p class="about-location" data-layout-id="location" data-resize="w">Your City, ST</p>
+      <p class="about-focus" data-layout-id="focus" data-resize="w">Computer Science and Engineering</p>
+      <p class="about-interests" data-layout-id="interests" data-resize="w">
         Technical Innovation, Design Thinking, and the Entrepreneurial Mindset
       </p>
-      <div class="about-links">
+      <div class="about-links" data-layout-id="links" data-resize="w">
         <a class="about-link" href="https://github.com/sanaSoo" target="_blank" rel="noopener">github</a>
         <a class="about-link" href="#" target="_blank" rel="noopener">linkedin</a>
       </div>
@@ -76,5 +74,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/layout.js"></script>
 </body>
 </html>

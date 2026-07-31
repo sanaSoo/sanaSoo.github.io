@@ -9,6 +9,8 @@ index.html                About + Projects layout, project detail overlay
 admin.html                 Form-based tool for adding/editing projects (see below)
 css/style.css               All styling
 js/main.js                  Fetches projects.json and renders the listing + detail view
+js/layout.js                 Positions the About section elements (see "Repositioning" below)
+about-layout.json            Saved positions for the About section (optional — see below)
 projects/projects.json      Your project content — edit via admin.html, or by hand
 assets/images/about/        Your profile photo
 assets/images/projects/<slug>/   Photos per project
@@ -17,7 +19,19 @@ assets/videos/projects/<slug>/   Videos per project (optional)
 
 ## Editing the About section
 
-Open `index.html` and edit the text inside `<section id="about">` — bio, meta line (pronouns / school / location), and the links (email, GitHub, LinkedIn, resume). Drop a photo at `assets/images/about/profile.jpg`.
+Open `index.html` and edit the text inside `<section id="about">` — headline, pronouns/school, location, focus line, interests line, and the github/linkedin links. Drop a photo at `assets/images/about/profile.jpg`.
+
+### Repositioning things (photo, stars, text) to match your Figma design
+
+The About section (photo, the two star shapes, and every line of text) is freely positioned rather than laid out automatically, so you can drag things around to match a design exactly.
+
+1. Run the site locally (see below) and open `http://localhost:8000/?edit=1` — this only works at desktop widths (900px+).
+2. Drag any element to move it. Drag the small dot on its bottom-right corner to resize it.
+3. Click an element to select it, then use the **-5° / +5°** buttons in the toolbar to rotate it (useful for the stars and photo).
+4. Your changes auto-save to your browser as you go, so refreshing won't lose progress. When you're happy, click **Save layout.json**, then move the downloaded file into the project root (replacing `about-layout.json` if one already exists).
+5. Commit and push. If you ever want to start over, click **Reset** in the toolbar.
+
+If no `about-layout.json` exists yet, the site just uses the built-in default positions in `js/layout.js` — nothing breaks.
 
 ## Adding a project (recommended: use the form)
 

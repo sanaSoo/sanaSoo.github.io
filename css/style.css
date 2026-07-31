@@ -166,52 +166,49 @@ code {
 .about {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 5rem 1.5rem 4rem;
-  display: flex;
-  gap: 3.5rem;
-  align-items: center;
-  flex-wrap: wrap;
+  padding: 3rem 1.5rem 4rem;
   border-bottom: 1px solid rgba(10, 51, 35, 0.2);
 }
 
-.about-photo-wrap {
+.about-canvas {
   position: relative;
-  flex: 0 0 auto;
-  width: 300px;
-  height: 340px;
+}
+
+/* Desktop: every tagged element is freely positioned by js/layout.js (top/left/width/height inline styles). */
+@media (min-width: 900px) {
+  .about-canvas {
+    height: 680px;
+  }
+
+  .about-canvas [data-layout-id] {
+    position: absolute;
+    margin: 0;
+  }
 }
 
 .about-star {
-  position: absolute;
-  width: 260px;
-  height: 260px;
   z-index: 0;
+  pointer-events: none;
+}
+
+.layout-editing .about-star {
+  pointer-events: auto;
 }
 
 .about-star-moss {
   fill: var(--moss-green);
-  top: -60px;
-  left: 100px;
-  transform: rotate(12deg);
 }
 
 .about-star-rosy {
   fill: var(--rosy-brown);
-  top: 90px;
-  left: -90px;
-  transform: rotate(-18deg);
   opacity: 0.95;
 }
 
 .about-photo {
-  position: relative;
   z-index: 1;
-  width: 280px;
-  height: 300px;
   overflow: hidden;
   background: var(--moss-green);
   border: 3px solid var(--dark-green);
-  transform: rotate(-3deg);
 }
 
 .about-photo img {
@@ -220,11 +217,7 @@ code {
   object-fit: cover;
 }
 
-.about-text {
-  flex: 1 1 360px;
-}
-
-.about-text h1 {
+h1[data-layout-id="headline"] {
   font-size: clamp(2.8rem, 5.5vw, 4.4rem);
   font-weight: 700;
   margin-bottom: 0.9rem;
@@ -253,12 +246,10 @@ code {
   font-size: clamp(1.6rem, 2.6vw, 2.1rem);
   color: var(--midnight-green);
   margin: 0 0 1rem;
-  max-width: 20ch;
 }
 
 .about-interests {
   font-size: clamp(1.15rem, 1.8vw, 1.4rem);
-  max-width: 42ch;
   margin: 0 0 1.75rem;
 }
 
@@ -279,6 +270,73 @@ code {
 
 .about-link:hover {
   color: var(--midnight-green);
+}
+
+/* --- Layout editor (only active with ?edit=1 in the URL) --- */
+
+.layout-editing [data-layout-id] {
+  cursor: move;
+  outline: 1px dashed transparent;
+}
+
+.layout-editing [data-layout-id]:hover {
+  outline-color: var(--midnight-green);
+}
+
+.layout-editing [data-layout-id].layout-selected {
+  outline: 2px solid var(--rosy-brown);
+  outline-offset: 2px;
+}
+
+.layout-resize-handle {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 14px;
+  height: 14px;
+  background: var(--rosy-brown);
+  border: 2px solid var(--beige);
+  border-radius: 50%;
+  cursor: nwse-resize;
+  z-index: 50;
+}
+
+.layout-toolbar {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--dark-green);
+  color: var(--beige);
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.layout-toolbar button,
+.layout-toolbar a {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: transparent;
+  border: 1px solid var(--beige);
+  color: var(--beige);
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.layout-toolbar button:hover,
+.layout-toolbar a:hover {
+  background: var(--beige);
+  color: var(--dark-green);
 }
 
 /* --- Projects list --- */

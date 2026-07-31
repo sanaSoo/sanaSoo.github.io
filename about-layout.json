@@ -1,16 +1,16 @@
 {
   "star-moss": {
-    "left": -55,
-    "top": 20,
-    "width": 260,
-    "height": 260,
+    "left": -245,
+    "top": -170,
+    "width": 640,
+    "height": 640,
     "rotate": 12
   },
   "star-rosy": {
-    "left": 414,
-    "top": 468,
-    "width": 260,
-    "height": 260,
+    "left": 224,
+    "top": 278,
+    "width": 640,
+    "height": 640,
     "rotate": -18
   },
   "photo": {

@@ -202,13 +202,13 @@ code {
 .about-star-rosy {
   fill: var(--rosy-brown);
   opacity: 0.95;
+  z-index: 2;
 }
 
 .about-photo {
   z-index: 1;
   overflow: hidden;
   background: var(--moss-green);
-  border: 3px solid var(--dark-green);
 }
 
 .about-photo img {
@@ -341,7 +341,9 @@ h1[data-layout-id="headline"] {
 
 /* --- Projects list --- */
 
-.projects {
+.projects,
+.photography,
+.journal {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 4rem 1.5rem 6rem;
@@ -367,6 +369,63 @@ h1[data-layout-id="headline"] {
   display: flex;
   flex-direction: column;
   gap: 4rem;
+}
+
+/* --- Coming soon placeholder --- */
+
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 5rem 2rem;
+  border: 2px dashed var(--dark-green);
+  text-align: center;
+}
+
+.coming-soon-star {
+  width: 52px;
+  height: 52px;
+  animation: coming-soon-float 5s ease-in-out infinite;
+}
+
+.photography .coming-soon-star {
+  fill: var(--moss-green);
+}
+
+.journal .coming-soon-star {
+  fill: var(--rosy-brown);
+}
+
+.coming-soon-text {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  color: var(--dark-green);
+  margin: 0;
+}
+
+.coming-soon-sub {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@keyframes coming-soon-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(6deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coming-soon-star {
+    animation: none;
+  }
 }
 
 .project-row {
@@ -711,8 +770,14 @@ h1[data-layout-id="headline"] {
     display: none;
   }
 
-  .projects {
+  .projects,
+  .photography,
+  .journal {
     padding: 2.5rem 1.25rem 3.5rem;
+  }
+
+  .coming-soon {
+    padding: 3rem 1.25rem;
   }
 
   .nav {

@@ -1,0 +1,65 @@
+{
+  "star-moss": {
+    "left": -245,
+    "top": -170,
+    "width": 500,
+    "height": 500,
+    "rotate": 12
+  },
+  "star-rosy": {
+    "left": 224,
+    "top": 320,
+    "width": 500,
+    "height": 500,
+    "rotate": -18
+  },
+  "photo": {
+    "left": 5,
+    "top": 5,
+    "width": 600,
+    "height": 750,
+    "rotate": -3
+  },
+  "headline": {
+    "left": 625,
+    "top": 79,
+    "width": 772,
+    "height": null,
+    "rotate": 0
+  },
+  "meta": {
+    "left": 700,
+    "top": 162,
+    "width": 500,
+    "height": null,
+    "rotate": 0
+  },
+  "location": {
+    "left": 700,
+    "top": 209,
+    "width": 400,
+    "height": null,
+    "rotate": 0
+  },
+  "focus": {
+    "left": 700,
+    "top": 248,
+    "width": 383,
+    "height": null,
+    "rotate": 0
+  },
+  "interests": {
+    "left": 700,
+    "top": 357,
+    "width": 460,
+    "height": null,
+    "rotate": 0
+  },
+  "links": {
+    "left": 700,
+    "top": 600,
+    "width": 460,
+    "height": null,
+    "rotate": 0
+  }
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Photography — Sanjna Sood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Courier+Prime:wght@400;700&family=Pacifico&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html#top" class="nav-brand">
+      Sanjna Sood
+      <span class="nav-tagline">Portfolio &mdash; Vol. 01</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#photography" class="nav-current">Photography</a>
+      <a href="index.html#journal">Journal</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="photography-full">
+    <a href="index.html#photography" class="detail-close">&larr; Back</a>
+    <h1 class="projects-title">Vol&nbsp;2. Photography</h1>
+    <p class="projects-hint">hobby photography shots with my digital camera :P</p>
+    <div class="feed" id="feed"></div>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&larr;</button>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Next photo">&rarr;</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Sanjna Sood</p>
+</footer>
+
+<script src="js/photography.js"></script>
+</body>
+</html>

@@ -781,6 +781,14 @@ h1[data-layout-id="headline"] {
   height: 190px;
   border: 2px solid var(--dark-green);
   transition: transform 0.2s ease;
+  overflow: hidden;
+}
+
+.photography-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .photography-preview-item:nth-child(1) { transform: rotate(-4deg); background: linear-gradient(155deg, var(--rosy-brown), var(--dark-green)); }
@@ -819,7 +827,6 @@ h1[data-layout-id="headline"] {
 
 .card {
   position: absolute;
-  border: 2px solid var(--dark-green);
   overflow: hidden;
   cursor: pointer;
   background: var(--moss-green);
@@ -833,7 +840,7 @@ h1[data-layout-id="headline"] {
 .card img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .lightbox {

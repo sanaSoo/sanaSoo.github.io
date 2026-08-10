@@ -2,10 +2,10 @@
 // Masonry photo feed + lightbox for photography.html.
 //
 // To add real photos: drop image files into assets/images/photography/,
-// then add one entry per photo to the `photos` array below. `width`/`height`
-// should match the real image's pixel dimensions (used to size it in the
-// masonry grid before it loads). Leave `photos` empty to keep showing the
-// placeholder tiles.
+// then add one entry per photo to the `photos` array below (src + caption).
+// Actual pixel dimensions are read from each file at load time so portrait
+// and landscape shots both keep their real proportions in the grid. Leave
+// `photos` empty to keep showing the placeholder tiles.
 // ---------------------------------------------------------------------------
 
 document.getElementById("year").textContent = new Date().getFullYear();
@@ -35,8 +35,26 @@ function placeholderSrc(w, h, colorA, colorB) {
 }
 
 // Edit this array to add real photos, e.g.:
-// { src: "assets/images/photography/forest-path.jpg", caption: "Forest path", width: 1200, height: 1600 }
-const photos = [];
+// { src: "assets/images/photography/forest-path.jpg", caption: "Forest path" }
+const photos = [
+  { src: "assets/images/photography/img_1284.jpg", caption: "" },
+  { src: "assets/images/photography/img_1429.jpg", caption: "" },
+  { src: "assets/images/photography/img_1485.jpg", caption: "" },
+  { src: "assets/images/photography/img_1513.jpg", caption: "" },
+  { src: "assets/images/photography/img_1942.jpg", caption: "" },
+  { src: "assets/images/photography/img_2055.jpg", caption: "" },
+  { src: "assets/images/photography/img_2080.jpg", caption: "" },
+  { src: "assets/images/photography/img_2103.jpg", caption: "" },
+  { src: "assets/images/photography/img_3393.jpg", caption: "" },
+  { src: "assets/images/photography/img_3521.jpg", caption: "" },
+  { src: "assets/images/photography/img_3525.jpg", caption: "" },
+  { src: "assets/images/photography/img_3640.jpg", caption: "" },
+  { src: "assets/images/photography/img_4309.jpg", caption: "" },
+  { src: "assets/images/photography/img_4408.jpg", caption: "" },
+  { src: "assets/images/photography/img_4414.jpg", caption: "" },
+  { src: "assets/images/photography/img_4627.jpg", caption: "" },
+  { src: "assets/images/photography/img_4672.jpg", caption: "" }
+];
 
 const PLACEHOLDER_HEIGHTS = [600, 300, 500, 700, 350, 450, 620, 300, 550, 400, 650, 380, 280, 520, 460, 610, 340, 590, 420, 330];
 const PLACEHOLDER_CAPTIONS = [
@@ -60,8 +78,32 @@ const items = photos.length
       };
     });
 
+// Real photos don't carry hardcoded dimensions, so portrait and landscape
+// shots each get their true aspect ratio instead of being forced into an
+// assumed one (which caused cropping/overlap in the grid).
+function loadDimensions(item) {
+  return new Promise((resolve) => {
+    if (item.width && item.height) {
+      resolve(item);
+      return;
+    }
+    const probe = new Image();
+    probe.onload = () => {
+      item.width = probe.naturalWidth;
+      item.height = probe.naturalHeight;
+      resolve(item);
+    };
+    probe.onerror = () => {
+      item.width = 4;
+      item.height = 3;
+      resolve(item);
+    };
+    probe.src = item.src;
+  });
+}
+
 const GAP = 16;
-// Chance a card drops down to line up its bottom edge with a taller
+// Chance a card drops down to line up its top edge with a taller
 // neighboring column instead of using the standard gap — creates
 // deliberate "shelf" breaks instead of pure randomness.
 const ALIGN_CHANCE = 0.35;
@@ -71,29 +113,32 @@ function getColumnCount() {
   if (w <= 480) return 1;
   if (w <= 700) return 2;
   if (w <= 950) return 3;
-  if (w <= 1200) return 4;
-  return 5;
+  return 4;
 }
 
 const cardEls = [];
 
-items.forEach((item, index) => {
-  const card = document.createElement("div");
-  card.className = "card";
+function buildGrid() {
+  items.forEach((item, index) => {
+    const card = document.createElement("div");
+    card.className = "card";
 
-  const img = document.createElement("img");
-  img.src = item.src;
-  img.alt = item.caption;
-  img.loading = "lazy";
-  img.width = item.width;
-  img.height = item.height;
+    const img = document.createElement("img");
+    img.src = item.src;
+    img.alt = item.caption;
+    img.loading = "lazy";
+    img.width = item.width;
+    img.height = item.height;
 
-  card.appendChild(img);
-  feed.appendChild(card);
-  card.addEventListener("click", () => openLightbox(index));
+    card.appendChild(img);
+    feed.appendChild(card);
+    card.addEventListener("click", () => openLightbox(index));
 
-  cardEls.push({ el: card, item });
-});
+    cardEls.push({ el: card, item });
+  });
+
+  layout();
+}
 
 function layout() {
   const columnCount = getColumnCount();
@@ -126,6 +171,7 @@ function layout() {
     const left = col * (columnWidth + GAP);
 
     el.style.width = `${columnWidth}px`;
+    el.style.height = `${cardHeight}px`;
     el.style.top = `${top}px`;
     el.style.left = `${left}px`;
 
@@ -135,7 +181,7 @@ function layout() {
   feed.style.height = `${Math.max(...columnHeights, 0)}px`;
 }
 
-layout();
+Promise.all(items.map(loadDimensions)).then(buildGrid);
 
 let resizeTimer;
 window.addEventListener("resize", () => {

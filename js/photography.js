@@ -103,10 +103,6 @@ function loadDimensions(item) {
 }
 
 const GAP = 16;
-// Chance a card drops down to line up its top edge with a taller
-// neighboring column instead of using the standard gap — creates
-// deliberate "shelf" breaks instead of pure randomness.
-const ALIGN_CHANCE = 0.35;
 
 function getColumnCount() {
   const w = feed.clientWidth;
@@ -154,20 +150,7 @@ function layout() {
 
     const cardHeight = columnWidth * (item.height / item.width);
     const currentTop = columnHeights[col];
-
-    let gap = GAP;
-    if (Math.random() < ALIGN_CHANCE) {
-      const neighborCols = [col - 1, col + 1].filter((c) => c >= 0 && c < columnCount);
-      const tallestNeighbor = Math.max(...neighborCols.map((c) => columnHeights[c]), 0);
-      const proposedGap = tallestNeighbor - currentTop;
-      // Cap the jump so a much-taller neighbor doesn't leave a huge blank
-      // stretch above the next card — never align further than one column's width.
-      if (proposedGap > GAP && proposedGap <= columnWidth) {
-        gap = proposedGap;
-      }
-    }
-
-    const top = currentTop + gap;
+    const top = currentTop === 0 ? 0 : currentTop + GAP;
     const left = col * (columnWidth + GAP);
 
     el.style.width = `${columnWidth}px`;

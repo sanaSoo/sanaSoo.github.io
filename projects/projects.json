@@ -9,11 +9,10 @@
     "thumbnail": "assets/images/projects/steady/dashboard.png",
     "palette": ["#e37083", "#f49aa2", "#ffcb7c", "#ffb876", "#a8bf8a", "#89b7c2"],
     "tags": ["React Native", "Health Tech", "Machine Learning", "Computer Vision", "Full-Stack"],
-    "blurb": "Basic blurb explaining the project. Ideally this portion would be around 1-3 sentences describing a bit of the need for the project along with the current progress. The link to full story pulls up the more detailed information like dev log and storytelling + gallery.",
+    "blurb": "PCOS/PMOS is a condition that affects 1 in 10 women and to this day there is no definitive 'cure' for the immense number of symptoms and issues it brings to those affected. Steady aims to aid women in symptom management as they navigate changes in their body, medications, and life style choices.",
     "description": "A longer description of the project shown on the detail page. Explain the problem, your approach, and what you learned.",
     "links": {
-      "repo": "https://github.com/sanaSoo/pcos-screening-tool",
-      "demo": "#"
+      "repo": "https://github.com/sanaSoo/pcos-screening-tool"
     },
     "gallery": [
       { "type": "image", "src": "assets/images/projects/steady/dashboard.png" },
@@ -25,7 +24,22 @@
     "devLog": [
       {
         "title": "Project kickoff",
-        "text": "Describe what you did in this update. You can add as many dev log entries as you like.",
+        "text": "Started working on project overview and requirements in June of 2026, this phase included reserach on PCOS/PMOS symptoms and an indepth understanding of health tech applications. Most resources used were NIH papers covering both topics.",
+        "media": ""
+      },
+      {
+        "title": "Prototyping",
+        "text": "After laying out all of the required pages (at least initial versions), I began prototyping in Figma, starting with a greyscale version of the pages. Then once the landing pages for each feature were built I added in the desired color pallete. This prototype went up for review as a part of the Hack Your Summer program and showed the overall flow of the application.",
+        "media": ""
+      },
+      {
+        "title": "Prototyping continued",
+        "text": "Once the initial prototyped pages had gotten some feedback i began to add in the sub pages and add 'functionalities' to the buttons and screens in order to show the more advanced flows. This included setting up the sign up and login flows along with the visual symptom tracking flows",
+        "media": ""
+      },
+      {
+        "title": "Minimum Viable Prouct (MVP)",
+        "text": "After laying out all of the required pages (at least initial versions), I began prototyping in Figma, starting with a greyscale version of the pages. Then once the landing pages for each feature were built I added in the desired color pallete. This prototype went up for review as a part of the Hack Your Summer program and showed the overall flow of the application.",
         "media": ""
       }
     ]
@@ -43,8 +57,7 @@
     "blurb": "Basic blurb explaining the project. Ideally this portion would be around 1-3 sentences describing a bit of the need for the project along with the current progress. The link to full story pulls up the more detailed information like dev log and storytelling + gallery.",
     "description": "A longer description of the second project. Explain the problem, your approach, and what you learned.",
     "links": {
-      "repo": "#",
-      "demo": "#"
+      "repo": "https://github.com/sanaSoo/framed"
     },
     "gallery": [
       { "type": "image", "src": "assets/images/projects/framed/cover.png" },

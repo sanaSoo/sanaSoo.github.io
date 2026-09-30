@@ -95,7 +95,7 @@ function renderDevLogEntry(entry) {
       <div class="devlog-date">${escapeHtml(entry.date)}</div>
       <h4>${escapeHtml(entry.title)}</h4>
       <p>${escapeHtml(entry.text)}</p>
-      ${entry.media ? `<div class="devlog-media"><img src="${escapeHtml(entry.media)}" alt="" loading="lazy" /></div>` : ""}
+      ${entry.media ? `<div class="devlog-media"><img src="${escapeHtml(entry.media)}" alt="" loading="lazy" data-lightbox="${escapeHtml(entry.media)}" /></div>` : ""}
     </div>
   `;
 }
@@ -175,3 +175,33 @@ async function init() {
 
 window.addEventListener("hashchange", showDetailFromHash);
 window.addEventListener("DOMContentLoaded", init);
+
+// Devlog images open larger in a lightbox on click.
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxClose = document.getElementById("lightboxClose");
+
+function openLightbox(src) {
+  lightboxImg.src = src;
+  lightbox.classList.add("open");
+  lightbox.setAttribute("aria-hidden", "false");
+}
+
+function closeLightbox() {
+  lightbox.classList.remove("open");
+  lightbox.setAttribute("aria-hidden", "true");
+  lightboxImg.src = "";
+}
+
+detailContent.addEventListener("click", (e) => {
+  const target = e.target.closest("[data-lightbox]");
+  if (target) openLightbox(target.dataset.lightbox);
+});
+
+lightboxClose.addEventListener("click", closeLightbox);
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+});

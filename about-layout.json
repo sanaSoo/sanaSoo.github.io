@@ -8,7 +8,7 @@
   },
   "star-rosy": {
     "left": 414,
-    "top": 468,
+    "top": 330,
     "width": 260,
     "height": 260,
     "rotate": -18
@@ -29,35 +29,35 @@
   },
   "meta": {
     "left": 634,
-    "top": 161,
+    "top": 195,
     "width": 500,
     "height": null,
     "rotate": 0
   },
   "location": {
-    "left": 851,
-    "top": 254,
+    "left": 634,
+    "top": 250,
     "width": 400,
     "height": null,
     "rotate": 0
   },
   "focus": {
-    "left": 635,
-    "top": 188,
-    "width": 383,
+    "left": 634,
+    "top": 300,
+    "width": 650,
     "height": null,
     "rotate": 0
   },
   "interests": {
-    "left": 637,
-    "top": 289,
+    "left": 634,
+    "top": 365,
     "width": 460,
     "height": null,
     "rotate": 0
   },
   "links": {
-    "left": 640,
-    "top": 375,
+    "left": 634,
+    "top": 480,
     "width": 507,
     "height": null,
     "rotate": 0

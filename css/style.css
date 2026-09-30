@@ -177,7 +177,7 @@ code {
 /* Desktop: every tagged element is freely positioned by js/layout.js (top/left/width/height inline styles). */
 @media (min-width: 900px) {
   .about-canvas {
-    height: 680px;
+    height: 610px;
   }
 
   .about-canvas [data-layout-id] {
@@ -754,9 +754,19 @@ h1[data-layout-id="headline"] {
 .devlog-media {
   margin-top: 0.85rem;
   border-radius: var(--radius);
-  border: 2px solid var(--dark-green);
   overflow: hidden;
-  max-width: 480px;
+  max-width: 320px;
+}
+
+.devlog-media img {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.devlog-media img:hover {
+  transform: scale(1.02);
 }
 
 /* --- Photography preview (homepage) --- */
@@ -771,39 +781,42 @@ h1[data-layout-id="headline"] {
 
 .photography-preview-grid {
   display: flex;
-  gap: 1.5rem;
+  align-items: flex-end;
+  gap: 1.75rem;
   flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 1rem;
 }
 
 .photography-preview-item {
-  width: 150px;
-  height: 190px;
-  border: 2px solid var(--dark-green);
-  transition: transform 0.2s ease;
-  overflow: hidden;
+  background: #fffdf5;
+  padding: 10px 10px 28px;
+  box-shadow: 0 6px 16px rgba(10, 51, 35, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .photography-preview-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
+  height: 170px;
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
 }
 
-.photography-preview-item:nth-child(1) { transform: rotate(-4deg); background: linear-gradient(155deg, var(--rosy-brown), var(--dark-green)); }
-.photography-preview-item:nth-child(2) { transform: rotate(3deg); background: linear-gradient(155deg, var(--moss-green), var(--midnight-green)); }
-.photography-preview-item:nth-child(3) { transform: rotate(-2deg); background: linear-gradient(155deg, var(--midnight-green), var(--rosy-brown)); }
-.photography-preview-item:nth-child(4) { transform: rotate(4deg); background: linear-gradient(155deg, var(--dark-green), var(--moss-green)); }
+.photography-preview-item:nth-child(1) { transform: rotate(-4deg); }
+.photography-preview-item:nth-child(2) { transform: rotate(3deg); }
+.photography-preview-item:nth-child(3) { transform: rotate(-2deg); }
+.photography-preview-item:nth-child(4) { transform: rotate(4deg); }
 
 .photography-preview-item:hover {
-  transform: rotate(0deg) translateY(-4px);
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow: 0 10px 22px rgba(10, 51, 35, 0.24);
 }
 
 @media (max-width: 600px) {
-  .photography-preview-item {
-    width: 110px;
-    height: 140px;
+  .photography-preview-item img {
+    height: 120px;
+    max-width: 180px;
   }
 }
 

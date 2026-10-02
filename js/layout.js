@@ -72,7 +72,7 @@ async function loadLayout() {
   }
   if (!saved) {
     try {
-      const res = await fetch("about-layout.json");
+      const res = await fetch("about-layout.json", { cache: "no-cache" });
       if (res.ok) saved = await res.json();
     } catch (err) {
       saved = null;

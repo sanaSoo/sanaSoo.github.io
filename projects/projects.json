@@ -69,7 +69,17 @@
     "devLog": [
       {
         "title": "Ideation",
-        "text": "Framed is a social media platform that combines what I beleive are teh best features of some of my favorite apps. Inspired by the styleistc choices of superfan, the algorithmic appraoch of beli and the community of letterboxd I wanted to build something that I would want to use myself. Ive spent a lot of time using these three applications and overtime have come up with the best and worst features of each in order to make an app that I find optimal",
+        "text": "Framed is a social media platform that combines what I beleive are the best features of some of my favorite apps. Inspired by the styleistc choices of superfan, the algorithmic appraoch of beli and the community of letterboxd I wanted to build something that I would want to use myself. Ive spent a lot of time using these three applications and overtime have come up with the best and worst features of each in order to make an app that I find optimal",
+        "media": ""
+      },
+      {
+        "title": "Feature Selection",
+        "text": "Acting as Product Owner it was really important to carefully select the feature of the app that would provide the most values, creating a base product that we could build more detailed feature on to. \n \n After discussion and spending time reseraching other applications we landed on the basic screens including our log-in, list page, profile, add content, and friends. For features the tastemakers feature was decidedly delayed as the ranking algorithm was the most immediate feature a user would want out of the pplication.",
+        "media": ""
+      },
+      {
+        "title": "Early Prototypes and Design",
+        "text": "The design of the app was focused on making a fun interface for users, carefully selecting the color pallete and buttons in order to emphasive creativity and engagement. The prototype was then built in figma, showing the basic flows from screen to screen and we spent 2 weeks working through the design and prototype gaining user feedback on ease of use and overall experience. From here we made adjustments with button placements and other UI elements to improve the overall user experience.",
         "media": ""
       }
     ]

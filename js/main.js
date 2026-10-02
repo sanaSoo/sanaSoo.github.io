@@ -163,7 +163,7 @@ function showDetailFromHash() {
 
 async function init() {
   try {
-    const res = await fetch("projects/projects.json");
+    const res = await fetch("projects/projects.json", { cache: "no-cache" });
     PROJECTS = await res.json();
   } catch (err) {
     console.error("Could not load projects/projects.json", err);

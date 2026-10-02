@@ -749,6 +749,12 @@ h1[data-layout-id="headline"] {
 .devlog-entry p {
   color: var(--text-muted);
   margin: 0;
+  white-space: pre-line;
+}
+
+.project-blurb,
+.project-description {
+  white-space: pre-line;
 }
 
 .devlog-media {

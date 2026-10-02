@@ -70,7 +70,7 @@ function renderList() {
 
 function renderGalleryItem(item) {
   if (item.type === "image") {
-    return `<div class="gallery-item"><img src="${escapeHtml(item.src)}" alt="" loading="lazy" onerror="this.style.display='none'" /></div>`;
+    return `<div class="gallery-item"><img src="${escapeHtml(item.src)}" alt="" loading="lazy" data-lightbox="${escapeHtml(item.src)}" onerror="this.style.display='none'" /></div>`;
   }
   if (item.type === "video") {
     return `<div class="gallery-item"><video src="${escapeHtml(item.src)}" controls></video></div>`;

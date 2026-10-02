@@ -771,6 +771,12 @@ h1[data-layout-id="headline"] {
   transition: transform 0.15s ease;
 }
 
+.gallery-item img {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.gallery-item img:hover,
 .devlog-media img:hover {
   transform: scale(1.02);
 }

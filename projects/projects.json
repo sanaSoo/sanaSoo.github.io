@@ -9,8 +9,8 @@
     "thumbnail": "assets/images/projects/steady/dashboard.png",
     "palette": ["#e37083", "#f49aa2", "#ffcb7c", "#ffb876", "#a8bf8a", "#89b7c2"],
     "tags": ["React Native", "Health Tech", "Machine Learning", "Computer Vision", "Full-Stack"],
-    "blurb": "PCOS/PMOS is a condition that affects 1 in 10 women and to this day there is no definitive 'cure' for the immense number of symptoms and issues it brings to those affected. Steady aims to aid women in symptom management as they navigate changes in their body, medications, and life style choices.",
-    "description": "A longer description of the project shown on the detail page. Explain the problem, your approach, and what you learned.",
+    "blurb": "PCOS/PMOS is a condition that affects 1 in 10 women, and to this day there is no definitive 'cure' for the immense number of symptoms and issues it brings to those affected. Steady aims to aid women in symptom management as they navigate changes in their bodies, medications, and lifestyle choices.",
+    "description": "Living with PCOS/PMOS often means managing a long list of symptoms with very little clarity. Treatments can take months to show results, symptoms shift from week to week, and it is hard to tell whether a new medication or habit is actually making a difference. Many women end up piecing together notes, apps, and memory just to explain how they've been feeling at their next appointment.\n\nSteady is designed to be a calm, steady companion through that process. Rather than promising a cure, it focuses on helping women understand their own bodies: logging symptoms as they happen, keeping track of treatments, and turning that history into patterns they can actually see. The goal is to make the experience feel less overwhelming and to give users something concrete to bring into conversations with their doctors.\n\nAbove all, Steady is built around the idea that symptom management is personal. No two experiences with PCOS/PMOS look the same, so the app is meant to adapt to each user rather than fit them into a single template.",
     "links": {
       "repo": "https://github.com/sanaSoo/pcos-screening-tool"
     },
@@ -23,23 +23,28 @@
     ],
     "devLog": [
       {
+        "title": "A Little Note",
+        "text": "Steady is still a developing project, and I am currently working on building some exciting new features, alongside tuning up the existing functionality!",
+        "media": ""
+      },
+      {
         "title": "Project kickoff",
-        "text": "Started working on project overview and requirements in June of 2026, this phase included reserach on PCOS/PMOS symptoms and an indepth understanding of health tech applications. Most resources used were NIH papers covering both topics.",
+        "text": "I started working on the project overview and requirements in June 2026. This phase included research on PCOS/PMOS symptoms and building an in-depth understanding of health tech applications. Most of the resources I used were NIH papers covering both topics.",
         "media": ""
       },
       {
         "title": "Prototyping",
-        "text": "After laying out all of the required pages (at least initial versions), I began prototyping in Figma, starting with a greyscale version of the pages. Then once the landing pages for each feature were built I added in the desired color pallete. This prototype went up for review as a part of the Hack Your Summer program and showed the overall flow of the application.",
+        "text": "After laying out all of the required pages (at least initial versions), I began prototyping in Figma, starting with a greyscale version of the pages. Once the landing pages for each feature were built, I added in the desired color palette. This prototype went up for review as part of the Hack Your Summer program and showed the overall flow of the application.",
         "media": ""
       },
       {
         "title": "Prototyping continued",
-        "text": "Once the initial prototyped pages had gotten some feedback i began to add in the sub pages and add 'functionalities' to the buttons and screens in order to show the more advanced flows. This included setting up the sign up and login flows along with the visual symptom tracking flows",
+        "text": "Once the initial prototyped pages had gotten some feedback, I began to add in the subpages and add 'functionality' to the buttons and screens in order to show the more advanced flows. This included setting up the sign-up and login flows, along with the visual symptom tracking flows.",
         "media": ""
       },
       {
-        "title": "Minimum Viable Prouct (MVP)",
-        "text": "After laying out all of the required pages (at least initial versions), I began prototyping in Figma, starting with a greyscale version of the pages. Then once the landing pages for each feature were built I added in the desired color pallete. This prototype went up for review as a part of the Hack Your Summer program and showed the overall flow of the application.",
+        "title": "Minimum Viable Product (MVP)",
+        "text": "After laying out all of the required pages (at least initial versions), I began prototyping in Figma, starting with a greyscale version of the pages. Once the landing pages for each feature were built, I added in the desired color palette. This prototype went up for review as part of the Hack Your Summer program and showed the overall flow of the application.",
         "media": ""
       }
     ]
@@ -54,8 +59,8 @@
     "thumbnail": "assets/images/projects/framed/cover.png",
     "palette": ["#7fb0e8", "#ffbfbf", "#008371", "#d0cbeb", "#d6d35e", "#c46040"],
     "tags": ["Social Media", "Full-Stack", "Product Design"],
-    "blurb": "Basic blurb explaining the project. Ideally this portion would be around 1-3 sentences describing a bit of the need for the project along with the current progress. The link to full story pulls up the more detailed information like dev log and storytelling + gallery.",
-    "description": "A longer description of the second project. Explain the problem, your approach, and what you learned.",
+    "blurb": "Framed was built to connect cinephiles and movie enthusiasts while also providing a platform for sharing reviews and recommendations. The product was built over a 10-week sprint that has since ended, but hopefully development will continue in the future! The highlights of the design are its fun graphics and engaging user experience.",
+    "description": "Watching a great movie or show is only half the fun. The other half is talking about it, comparing opinions, and finding out what your friends think you should watch next. Most tracking apps treat logging media as a solo activity, and the social side ends up feeling like an afterthought.\n\nFramed puts friends at the center. Users can log what they watch, rank it against everything else they've seen, and share reviews and recommendations with the people whose taste they trust most. Over time, your profile becomes a record of your taste, and your friends' lists become the best place to find something new.\n\nJust as important as what Framed does is how it feels. Bright colors, playful graphics, and an interface built for exploring make it feel less like a database and more like a space you actually want to spend time in.",
     "links": {
       "repo": "https://github.com/sanaSoo/framed"
     },
@@ -69,17 +74,22 @@
     "devLog": [
       {
         "title": "Ideation",
-        "text": "Framed is a social media platform that combines what I beleive are the best features of some of my favorite apps.\n\nInspired by the styleistc choices of superfan, the algorithmic appraoch of beli and the community of letterboxd I wanted to build something that I would want to use myself. Ive spent a lot of time using these three applications and overtime have come up with the best and worst features of each in order to make an app that I find optimal",
+        "text": "Framed is a social media platform that combines what I believe are the best features of some of my favorite apps.\n\nInspired by the stylistic choices of Superfan, the algorithmic approach of Beli, and the community of Letterboxd, I wanted to build something that I would want to use myself. I've spent a lot of time using these three applications and over time have identified the best and worst features of each in order to make an app that I find optimal.",
         "media": ""
       },
       {
         "title": "Feature Selection",
-        "text": "Acting as Product Owner it was really important to carefully select the feature of the app that would provide the most values, creating a base product that we could build more detailed feature on to.\n\nAfter discussion and spending time reseraching other applications we landed on the basic screens including our log-in, list page, profile, add content, and friends. For features the tastemakers feature was decidedly delayed as the ranking algorithm was the most immediate feature a user would want out of the pplication.",
+        "text": "As Product Owner, it was really important for me to carefully select the features of the app that would provide the most value, creating a base product that we could build more detailed features onto.\n\nAfter discussion and time spent researching other applications, we landed on the basic screens, including our log-in, list page, profile, add content, and friends. As for features, we decided to delay the tastemakers feature, as the ranking algorithm was the most immediate feature a user would want out of the application.",
         "media": ""
       },
       {
         "title": "Early Prototypes and Design",
-        "text": "The design of the app was focused on making a fun interface for users, carefully selecting the color pallete and buttons in order to emphasive creativity and engagement. The prototype was then built in figma, showing the basic flows from screen to screen and we spent 2 weeks working through the design and prototype gaining user feedback on ease of use and overall experience.\n\nFrom here we made adjustments with button placements and other UI elements to improve the overall user experience.",
+        "text": "The design of the app was focused on making a fun interface for users, carefully selecting the color palette and buttons in order to emphasize creativity and engagement. The prototype was then built in Figma, showing the basic flows from screen to screen, and we spent 2 weeks working through the design and prototype, gaining user feedback on ease of use and overall experience.\n\nFrom here, we made adjustments to button placements and other UI elements to improve the overall user experience.",
+        "media": ""
+      },
+      {
+        "title": "Tech Stack",
+        "text": "Given our 10-week time constraint and the need to produce an MVP for competitive purposes, we chose a simple stack. **Firebase** was used for user authentication, **MongoDB** for media storage, **React** for the front end, and the **Simkl API** as our source for TV show and movie information (Letterboxd unfortunately has a notably long waitlist).",
         "media": ""
       }
     ]

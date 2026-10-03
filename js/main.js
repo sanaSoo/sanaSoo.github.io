@@ -21,6 +21,11 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+// Escapes text, then turns **word** into bold.
+function formatText(str) {
+  return escapeHtml(str).replace(/\*\*(.+?)\*\*/gs, "<strong>$1</strong>");
+}
+
 function titleFontClass(titleStyle) {
   if (titleStyle === "script") return "project-title--script";
   if (titleStyle === "typewriter") return "project-title--typewriter";
@@ -53,7 +58,7 @@ function renderList() {
             ${p.year ? `<span class="project-year">${escapeHtml(p.year)}</span>` : ""}
           </div>
           ${p.tagline ? `<p class="project-tagline"${gapStyle(p.taglineGap)}>${escapeHtml(p.tagline)}</p>` : ""}
-          <p class="project-blurb"${gapStyle(p.blurbGap)}>${escapeHtml(p.blurb)}</p>
+          <p class="project-blurb"${gapStyle(p.blurbGap)}>${formatText(p.blurb)}</p>
           <div class="swatch-row">${renderSwatches(p.palette)}</div>
           <div class="project-callout" style="background:${calloutColor}">
             <a class="callout-primary" href="#project/${encodeURIComponent(p.slug)}">link to full story</a>
@@ -94,7 +99,7 @@ function renderDevLogEntry(entry) {
     <div class="devlog-entry">
       <div class="devlog-date">${escapeHtml(entry.date)}</div>
       <h4>${escapeHtml(entry.title)}</h4>
-      <p>${escapeHtml(entry.text)}</p>
+      <p>${formatText(entry.text)}</p>
       ${entry.media ? `<div class="devlog-media"><img src="${escapeHtml(entry.media)}" alt="" loading="lazy" data-lightbox="${escapeHtml(entry.media)}" /></div>` : ""}
     </div>
   `;
@@ -112,7 +117,7 @@ function renderProjectDetail(project) {
           ? `<div class="tag-list">${project.tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>`
           : ""
       }
-      <p class="project-description">${escapeHtml(project.description)}</p>
+      <p class="project-description">${formatText(project.description)}</p>
       <div class="detail-links">
         ${links.repo ? `<a class="btn btn-primary" href="${escapeHtml(links.repo)}" target="_blank" rel="noopener">Repo</a>` : ""}
         ${links.demo ? `<a class="btn btn-primary" href="${escapeHtml(links.demo)}" target="_blank" rel="noopener">Demo</a>` : ""}

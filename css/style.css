@@ -820,7 +820,6 @@ h1[data-layout-id="headline"] {
 .photography-preview-item:nth-child(3) { transform: rotate(-2deg); }
 .photography-preview-item:nth-child(4) { transform: rotate(4deg); }
 .photography-preview-item:nth-child(5) { transform: rotate(-3deg); }
-.photography-preview-item:nth-child(6) { transform: rotate(2deg); }
 
 .photography-preview-item:hover {
   transform: rotate(0deg) translateY(-6px);

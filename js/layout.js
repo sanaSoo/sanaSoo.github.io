@@ -19,12 +19,8 @@ const DEFAULT_LAYOUT = {
   "star-moss": { left: 180, top: -40, width: 260, height: 260, rotate: 12 },
   "star-rosy": { left: -60, top: 110, width: 260, height: 260, rotate: -18 },
   photo: { left: 20, top: 60, width: 280, height: 300, rotate: -3 },
-  headline: { left: 460, top: 0, width: 600, height: null, rotate: 0 },
-  meta: { left: 460, top: 180, width: 500, height: null, rotate: 0 },
-  location: { left: 460, top: 230, width: 400, height: null, rotate: 0 },
-  focus: { left: 460, top: 275, width: 420, height: null, rotate: 0 },
-  interests: { left: 460, top: 375, width: 460, height: null, rotate: 0 },
-  links: { left: 460, top: 495, width: 400, height: null, rotate: 0 }
+  // All the text lines move as one block so their spacing follows the font sizes.
+  text: { left: 460, top: 60, width: 720, height: null, rotate: 0 }
 };
 
 let currentLayout = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
@@ -46,10 +42,33 @@ function applyLayout(layout) {
     const cfg = layout[id] || DEFAULT_LAYOUT[id];
     el.style.left = cfg.left + "px";
     el.style.top = cfg.top + "px";
-    if (cfg.width != null) el.style.width = cfg.width + "px";
+    if (cfg.width != null) {
+      // Keep text inside the canvas on narrower desktop windows.
+      const room = id === "text" ? CANVAS.clientWidth - cfg.left : Infinity;
+      el.style.width = Math.min(cfg.width, room) + "px";
+    }
     if (cfg.height != null) el.style.height = cfg.height + "px";
     el.style.transform = `rotate(${cfg.rotate || 0}deg)`;
   });
+  fitCanvas();
+}
+
+// Size the canvas to its contents so there's no dead space below.
+function fitCanvas() {
+  if (!CANVAS) return;
+  if (!IS_DESKTOP()) {
+    CANVAS.style.height = "";
+    return;
+  }
+  // Stars are decorative and may hang over the edge; their rotated boxes are
+  // much bigger than the visible shape, so only the photo and text count.
+  const canvasTop = CANVAS.getBoundingClientRect().top;
+  let bottom = 0;
+  ["photo", "text"].forEach((id) => {
+    const el = elFor(id);
+    if (el) bottom = Math.max(bottom, el.getBoundingClientRect().bottom - canvasTop);
+  });
+  CANVAS.style.height = Math.ceil(bottom) + "px";
 }
 
 function mergeLayout(base, overrides) {
@@ -166,7 +185,10 @@ function initEditMode() {
   });
 
   window.addEventListener("mouseup", () => {
-    if (drag || resize) persistDraft();
+    if (drag || resize) {
+      persistDraft();
+      fitCanvas();
+    }
     drag = null;
     resize = null;
   });
@@ -216,6 +238,8 @@ function initEditMode() {
 
 window.addEventListener("DOMContentLoaded", async () => {
   await loadLayout();
+  // Web fonts change the text block's height once they load.
+  if (document.fonts) document.fonts.ready.then(fitCanvas);
   if (EDIT_MODE) initEditMode();
 });
 

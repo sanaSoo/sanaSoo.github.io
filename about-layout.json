@@ -1,64 +1,29 @@
 {
   "star-moss": {
     "left": -55,
-    "top": 20,
+    "top": -10,
     "width": 260,
     "height": 260,
     "rotate": 12
   },
   "star-rosy": {
-    "left": 414,
-    "top": 330,
+    "left": 335,
+    "top": 335,
     "width": 260,
     "height": 260,
     "rotate": -18
   },
   "photo": {
     "left": 64,
-    "top": 168,
+    "top": 138,
     "width": 377,
     "height": 409,
     "rotate": -3
   },
-  "headline": {
-    "left": 625,
-    "top": 79,
-    "width": 772,
-    "height": null,
-    "rotate": 0
-  },
-  "meta": {
-    "left": 634,
-    "top": 195,
-    "width": 500,
-    "height": null,
-    "rotate": 0
-  },
-  "location": {
-    "left": 634,
-    "top": 250,
-    "width": 400,
-    "height": null,
-    "rotate": 0
-  },
-  "focus": {
-    "left": 634,
-    "top": 300,
-    "width": 650,
-    "height": null,
-    "rotate": 0
-  },
-  "interests": {
-    "left": 634,
-    "top": 365,
-    "width": 460,
-    "height": null,
-    "rotate": 0
-  },
-  "links": {
-    "left": 634,
-    "top": 480,
-    "width": 507,
+  "text": {
+    "left": 580,
+    "top": 170,
+    "width": 760,
     "height": null,
     "rotate": 0
   }

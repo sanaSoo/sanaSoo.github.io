@@ -57,7 +57,7 @@
     "tagline": "document your favorite media with friends",
     "taglineGap": -20,
     "thumbnail": "assets/images/projects/framed/cover.png",
-    "palette": ["#7fb0e8", "#ffbfbf", "#008371", "#d0cbeb", "#d6d35e", "#c46040"],
+    "palette": ["#008371", "#7fb0e8", "#d0cbeb", "#ffbfbf", "#c46040", "#d6d35e"],
     "tags": ["Social Media", "Full-Stack", "Product Design"],
     "blurb": "Framed was built to connect cinephiles and movie enthusiasts while also providing a platform for sharing reviews and recommendations. The product was built over a 10-week sprint that has since ended, but hopefully development will continue in the future! The highlights of the design are its fun graphics and engaging user experience.",
     "description": "Watching a great movie or show is only half the fun. The other half is talking about it, comparing opinions, and finding out what your friends think you should watch next. Most tracking apps treat logging media as a solo activity, and the social side ends up feeling like an afterthought.\n\nFramed puts friends at the center. Users can log what they watch, rank it against everything else they've seen, and share reviews and recommendations with the people whose taste they trust most. Over time, your profile becomes a record of your taste, and your friends' lists become the best place to find something new.\n\nJust as important as what Framed does is how it feels. Bright colors, playful graphics, and an interface built for exploring make it feel less like a database and more like a space you actually want to spend time in.",
@@ -90,6 +90,47 @@
       {
         "title": "Tech Stack",
         "text": "Given our 10-week time constraint and the need to produce an MVP for competitive purposes, we chose a simple stack. **Firebase** was used for user authentication, **MongoDB** for media storage, **React** for the front end, and the **Simkl API** as our source for TV show and movie information (Letterboxd unfortunately has a notably long waitlist).",
+        "media": ""
+      }
+    ]
+  },
+  {
+    "slug": "laundry-link",
+    "title": "Laundry Link",
+    "year": "2025",
+    "titleStyle": "rounded",
+    "tagline": "a smart detergent                   dispenser for shared laundry rooms",
+    "taglineGap": -20,
+    "thumbnail": "assets/images/projects/laundry-link/exterior.png",
+    "palette": ["#1f3b87", "#3d5fd4", "#8ab2dc", "#e9dfc8", "#f0c34e", "#ee7a4a"],
+    "tags": ["Arduino", "Hardware", "Sustainability", "Embedded Systems", "Product Design", "Prototyping"],
+    "blurb": "Laundry Link is a smart access dispenser for shared laundry rooms, built for the Smart Product Design class. By handing out one pre-measured detergent packet per load, it cuts down on waste and overuse. The final product was pitched to investors and received positive feedback during the Q&A.",
+    "description": "Shared laundry rooms come with a familiar set of problems: forgotten detergent, spills, and no easy way to share supplies fairly. Laundry Link replaces the communal bottle with a dispenser that hands out one pre-measured packet at a time to verified users.\n\nSustainability is at the core of the design. Portioning detergent by load size (full or half) means people use only what they need, which reduces wasted product, excess chemicals going down the drain, and spills. Because each packet is tied to a user account, supplies are shared fairly instead of running out early.\n\nThe flow is simple. A user enters their 4-digit ID on the keypad (a card or phone tap in the real product), the LCD confirms whether the ID is valid and shows their balance, and red and green LEDs give instant feedback. From there, the user picks a full or half load with the two selection buttons, and the matching packet drops into the tray at the front, ready to go into the machine.\n\nInside, the enclosure is split into three levels: a battery pack, an Arduino Uno with its breadboard, and a servo-driven flip mechanism that dispenses from one of two packet stacks. A removable top and a master power switch on the back keep the unit easy to refill and maintain.\n\nLaundry Link was built for the Smart Product Design class. The final product was pitched to a panel of investors, who questioned the team on the concept and design and gave positive feedback.",
+    "links": {},
+    "gallery": [
+      { "type": "image", "src": "assets/images/projects/laundry-link/exterior.png" },
+      { "type": "image", "src": "assets/images/projects/laundry-link/interior.png" },
+      { "type": "image", "src": "assets/images/projects/laundry-link/storyboard.png" }
+    ],
+    "devLog": [
+      {
+        "title": "User Flow",
+        "text": "Before building anything, I storyboarded the full interaction in six steps: read the instructions, tap a phone or access card, check your balance, make a load selection, retrieve the packet, and place it into the machine tray.",
+        "media": "assets/images/projects/laundry-link/storyboard.png"
+      },
+      {
+        "title": "Enclosure",
+        "text": "The exterior houses an instruction panel, an LCD display for ID validation and balance, red and green LED indicators, a keypad for user ID input, and two load selection buttons (full and half). Packets drop into a tray at the front, and the top is removable for refills.",
+        "media": "assets/images/projects/laundry-link/exterior.png"
+      },
+      {
+        "title": "Electronics and Dispensing",
+        "text": "The interior is organized into three levels: **battery pack**, **Arduino Uno + breadboard**, and the **dispensing mechanism**. A servo motor drives a flip mechanism that releases a packet from either the full or half load stack, and a master power switch is wired to the battery pack.",
+        "media": "assets/images/projects/laundry-link/interior.png"
+      },
+      {
+        "title": "Investor Pitch",
+        "text": "As the final milestone for Smart Product Design, we pitched Laundry Link to investors and took their questions on the product, its sustainability benefits, and how it would work in a real laundry room. The pitch received positive feedback.",
         "media": ""
       }
     ]

@@ -29,6 +29,7 @@ function formatText(str) {
 function titleFontClass(titleStyle) {
   if (titleStyle === "script") return "project-title--script";
   if (titleStyle === "typewriter") return "project-title--typewriter";
+  if (titleStyle === "rounded") return "project-title--rounded";
   return "project-title--serif";
 }
 

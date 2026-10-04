@@ -7,6 +7,19 @@
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
+// mailto: does nothing without a mail app set up, so also copy the address.
+const emailLink = document.getElementById("email-link");
+if (emailLink) {
+  emailLink.addEventListener("click", () => {
+    const address = emailLink.href.replace("mailto:", "");
+    if (!navigator.clipboard) return;
+    navigator.clipboard.writeText(address).then(() => {
+      emailLink.textContent = "copied!";
+      setTimeout(() => (emailLink.textContent = "email"), 1800);
+    }).catch(() => {});
+  });
+}
+
 const list = document.getElementById("projects-list");
 const detailEl = document.getElementById("project-detail");
 const detailContent = document.getElementById("project-detail-content");
